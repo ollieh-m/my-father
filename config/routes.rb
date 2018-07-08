@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :parts, only: [] do
-      resources :sections, only: [:index]
+      resources :sections, only: [:index, :create]
     end
   end
 end
