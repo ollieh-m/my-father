@@ -1,8 +1,5 @@
-<%= form_for @section_1, url: admin_part_sections_path do |f| %>
-  <%= f.text_field :title %>
-  <%= f.submit %>
-<% end %>
-<%= form_for @section_2, url: admin_part_sections_path do |f| %>
-  <%= f.text_field :title %>
-  <%= f.submit %>
-<% end %>
+<div class='js-class-admin-sections-page' />
+
+<div class='sections'></div>
+
+<%= link_to 'Add', '#', id: 'add_new_section_link', data: {form: render('form')} %>

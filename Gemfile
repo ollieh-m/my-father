@@ -55,7 +55,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'rspec-rails'
-  gem 'factory_girl'
+  gem 'factory_bot'
   gem 'faker'
   gem 'timecop'
   gem 'capybara', require: false
