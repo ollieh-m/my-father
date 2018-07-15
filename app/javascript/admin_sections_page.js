@@ -13,6 +13,34 @@ class AdminSectionsPage {
 
       this.$sections.append(this.add_new_section_form)
     })
+
+    $('body').on('submit', 'form.new_section', (event) => {
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      // prepare nested form data
+      data = {section: {}}
+      $(event.currentTarget).serializeArray().forEach((param) =>{
+        sectionParam = param.name.match(/section\[([a-z]+)\]/)
+        if (sectionParam) {
+          data.section[sectionParam[1]] = param.value
+        } else {
+          data[param.name] = param.value
+        }
+      })
+
+      $.ajax({
+        method: "POST",
+        url: event.currentTarget.action,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify(data)
+      })
+        .done((msg) => {
+          // render new section on page if it saved successfully
+          alert( "Data Saved: " + msg );
+        });
+    })
   }
 }
 
