@@ -36,9 +36,8 @@ class AdminSectionsPage {
         contentType: 'application/json',
         data: JSON.stringify(data)
       })
-        .done((msg) => {
-          // render new section on page if it saved successfully
-          alert( "Data Saved: " + msg );
+        .done((response) => {
+          $(event.currentTarget).replaceWith(response.section)
         });
     })
   }
