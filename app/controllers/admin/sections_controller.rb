@@ -9,19 +9,14 @@ module Admin
 
     def create
       result = Section::Create.(params)
-      binding.pry
 
-      render json: {
-        section: render_to_string(template: 'admin/sections/_section', layout: false, locals: {section: section} )
-      }
-    end
-
-    def section_params
-      params.require(:section).permit(:title)
-    end
-
-    def part
-      Part.find(params[:part_id])
+      if result.success?
+        render json: {
+          section: render_to_string(template: 'admin/sections/_section', layout: false, locals: {section: result['model']} )
+        }
+      else
+        # render form partial showing errors, which may be written directly to a failure explanation key
+      end
     end
 
   end
