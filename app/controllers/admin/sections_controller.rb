@@ -8,8 +8,8 @@ module Admin
     end
 
     def create
-      # use a form to validate submission
-      section = Section.create(part: part, title: section_params[:title])
+      result = Section::Create.(params)
+      binding.pry
 
       render json: {
         section: render_to_string(template: 'admin/sections/_section', layout: false, locals: {section: section} )

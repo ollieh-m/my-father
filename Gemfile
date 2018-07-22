@@ -35,7 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'reform'
+gem 'trailblazer', '~> 2.0.3'
+gem 'reform-rails'
 gem 'dry-validation'
 
 group :development, :test do
