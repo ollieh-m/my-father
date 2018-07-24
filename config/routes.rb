@@ -6,4 +6,5 @@ Rails.application.routes.draw do
       resources :sections, only: [:index, :create, :edit]
     end
   end
+
 end

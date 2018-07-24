@@ -14,14 +14,15 @@ class AdminSectionsPage {
       this.$sections.append(this.add_new_section_form)
     })
 
-    $('body').on('submit', 'form.new_section', (event) => {
+    $('body').on('submit', 'form.new_create_section', (event) => {
       event.preventDefault()
       event.stopImmediatePropagation()
 
       // prepare nested form data
       data = {section: {}}
       $(event.currentTarget).serializeArray().forEach((param) =>{
-        sectionParam = param.name.match(/section\[([a-z]+)\]/)
+        sectionParam = param.name.match(/create_section\[([a-z]+)\]/)
+        console.log('sectionParam', sectionParam)
         if (sectionParam) {
           data.section[sectionParam[1]] = param.value
         } else {

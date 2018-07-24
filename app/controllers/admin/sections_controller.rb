@@ -2,9 +2,15 @@ module Admin
   class SectionsController < ApplicationController
 
     def index
-      render locals: {
-        new_section: Section.new
-      }
+      result = Section::Index.(params)
+
+      if result.success?
+        render locals: {
+          form: result['contract.default']
+        }
+      else
+        handle_standard_failure(result['failure'])
+      end
     end
 
     def create
@@ -12,10 +18,18 @@ module Admin
 
       if result.success?
         render json: {
-          section: render_to_string(template: 'admin/sections/_section', layout: false, locals: {section: result['model']} )
+          section: render_to_string(template: 'admin/sections/_section', layout: false, locals: {
+            section: result['model']
+          })
         }
       else
-        # render form partial showing errors, which may be written directly to a failure explanation key
+        binding.pry
+        render json: {
+          section: render_to_string(template: 'admin/sections/_form', layout: false, locals: {
+            form: result['contract.default'],
+            error: result['failure'].message
+          })
+        }
       end
     end
 
