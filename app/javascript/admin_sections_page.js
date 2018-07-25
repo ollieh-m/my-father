@@ -19,12 +19,11 @@ class AdminSectionsPage {
       event.stopImmediatePropagation()
 
       // prepare nested form data
-      data = {section: {}}
+      data = {create_section: {}}
       $(event.currentTarget).serializeArray().forEach((param) =>{
         sectionParam = param.name.match(/create_section\[([a-z]+)\]/)
-        console.log('sectionParam', sectionParam)
         if (sectionParam) {
-          data.section[sectionParam[1]] = param.value
+          data.create_section[sectionParam[1]] = param.value
         } else {
           data[param.name] = param.value
         }

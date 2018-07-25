@@ -1,16 +1,19 @@
 class Section::Index < Trailblazer::Operation
 
+
+  # TO DO: redirect to first part, whatever it is, on failure
+  # need access to path helpers: admin_part_sections_path(part_id: Part.first)
   step :part
-  # TO DO: redirect to first part, whatever it is
   failure Macros::Failure::Set() { |options, params|
     {
       message: "Could not find part with ID #{params[:part_id]}",
-      type: :next,
-      go_to: '/admin/parts/1/sections'
+      go_to: '/admin/parts/1/sections',
+      step: 'part'
     }
   }
 
   step :model
+
   step Contract::Build( constant: CreateSectionForm )
 
   def part(options, params:, **)

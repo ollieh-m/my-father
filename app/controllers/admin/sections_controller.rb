@@ -23,7 +23,6 @@ module Admin
           })
         }
       else
-        binding.pry
         render json: {
           section: render_to_string(template: 'admin/sections/_form', layout: false, locals: {
             form: result['contract.default'],

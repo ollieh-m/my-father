@@ -1,16 +1,21 @@
 class Section::Create < Trailblazer::Operation
 
   step :part
+  failure Macros::Failure::Set() { |options, params|
+    {
+      message: "Could not find part with ID #{params[:part_id]}",
+      step: 'part'
+    }
+  }
 
   step :model
-  failure Macros::Failure::Set() { |options, params|
-    {message: "Could not find part with ID #{params[:part_id]}"}
-  }
 
   step Contract::Build( constant: CreateSectionForm )
 
   step Contract::Validate( key: 'create_section' )
-  failure Macros::Failure::Set()
+  failure Macros::Failure::Set() { |options, params|
+    {step: 'contract.default.validate'}
+  }
 
   step Contract::Persist()
 

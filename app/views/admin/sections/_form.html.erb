@@ -1,8 +1,10 @@
 <% if form %>
   <%= form_for form, url: admin_part_sections_path do |f| %>
     <%= f.text_field :title %>
-    <% if f.object.errors.messages.any? %>
-      <%= f.object.errors.messages %>
+    <% if f.object.errors.messages[:title] %>
+      <% f.object.errors.messages[:title].each do |error| %>
+        <%= error %>
+      <% end %>
     <% end %>
     <%= f.submit 'Create' %>
   <% end %>
