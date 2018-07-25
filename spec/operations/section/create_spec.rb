@@ -21,6 +21,7 @@ RSpec.describe Section::Create do
   end
 
   context 'With invalid section params' do
+    # TO DO: operation should be able to receive params as strings or symbols
     let!(:result){ described_class.({part_id: part.id, 'create_section' => {title: ''}}) }
 
     it 'Fails' do
@@ -42,6 +43,7 @@ RSpec.describe Section::Create do
   end
 
   context 'With valid part and section params' do
+    # TO DO: operation should be able to receive params as strings or symbols
     let!(:result){ described_class.({part_id: part.id, 'create_section' => {title: 'A title'}}) }
 
     it 'Succeeds' do
