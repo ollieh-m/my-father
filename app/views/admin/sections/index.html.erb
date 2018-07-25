@@ -1,5 +1,11 @@
 <div class='js-class-admin-sections-page' />
 
-<div class='sections'></div>
+<div class='sections'>
+  <% if sections.any? %>
+    <% sections.each do |existing_section| %>
+      <%= render('section', section: existing_section) %>
+    <% end %>
+  <% end %>
+</div>
 
 <%= link_to 'Add', '#', id: 'add_new_section_link', data: {form: render('form', form: form)} %>

@@ -6,7 +6,8 @@ module Admin
 
       if result.success?
         render locals: {
-          form: result['contract.default']
+          form: result['contract.default'],
+          sections: result['sections']
         }
       else
         handle_standard_failure(result['failure'])
