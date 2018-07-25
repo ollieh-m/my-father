@@ -50,7 +50,7 @@ RSpec.describe 'Admin creates a new chapter' do
       expect(Section.all.count).to eq 2
     end
 
-    scenario 'after initially trying to add the section to a non-existant part', js: true do
+    scenario 'after initially trying to add the section to a non-existent part', js: true do
       visit admin_part_sections_path(part_id: 2)
       expect(page).to have_css('div.flash-alert', text: 'Could not find part with ID 2')
       expect(current_path).to eq admin_part_sections_path(part)
