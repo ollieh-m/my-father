@@ -1,0 +1,7 @@
+<%= form_for form, url: admin_part_section_path, method: :patch do |f| %>
+  <%= f.fields_for :versions do |vf| %>
+    <%= vf.file_field :document %>
+    <%= vf.hidden_field :document_cache %>
+  <% end %>
+  <%= f.submit 'Update' %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180721215343) do
+ActiveRecord::Schema.define(version: 20180805080458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,5 +29,14 @@ ActiveRecord::Schema.define(version: 20180721215343) do
     t.index ["part_id"], name: "index_sections_on_part_id"
   end
 
+  create_table "versions", force: :cascade do |t|
+    t.string "document"
+    t.bigint "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_versions_on_section_id"
+  end
+
   add_foreign_key "sections", "parts"
+  add_foreign_key "versions", "sections"
 end

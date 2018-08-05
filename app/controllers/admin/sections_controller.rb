@@ -45,5 +45,11 @@ module Admin
       end
     end
 
+    def update
+      result = Section::Update.(params)
+
+      binding.pry
+    end
+
   end
 end

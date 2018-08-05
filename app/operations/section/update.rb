@@ -1,4 +1,4 @@
-class Section::Edit < Trailblazer::Operation
+class Section::Update < Trailblazer::Operation
 
   def self.url_helpers
     Rails.application.routes.url_helpers
@@ -15,16 +15,17 @@ class Section::Edit < Trailblazer::Operation
 
   step Contract::Build( constant: EditSectionForm )
 
-  step :prepopulate
+  step Contract::Validate( key: 'edit_section' )
+  failure Macros::Failure::Set() { |options, params|
+    {step: 'contract.default.validate'}
+  }
+
+  step Contract::Persist()
 
   def model(options, params:, **)
     if part = Part.find_by(id: params[:part_id])
       options['model'] = Section.find_by(id: params[:id], part: part)
     end
-  end
-
-  def prepopulate(options, params:, **)
-    options['contract.default'].prepopulate!
   end
 
 end
