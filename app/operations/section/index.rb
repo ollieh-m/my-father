@@ -1,6 +1,5 @@
 class Section::Index < Trailblazer::Operation
 
-  delegate :url_helpers, to: 'Rails.application.routes'
   def self.url_helpers
     Rails.application.routes.url_helpers
   end
