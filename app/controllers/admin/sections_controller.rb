@@ -33,5 +33,17 @@ module Admin
       end
     end
 
+    def edit
+      result = Section::Edit.(params)
+
+      if result.success?
+        render locals: {
+          form: result['contract.default']
+        }
+      else
+        handle_standard_failure(result['failure'])
+      end
+    end
+
   end
 end
