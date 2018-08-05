@@ -1,12 +1,15 @@
 class Section::Index < Trailblazer::Operation
 
-  # TO DO: redirect to first part, whatever it is, on failure using path helper:
-  # admin_part_sections_path(part_id: Part.first)
+  delegate :url_helpers, to: 'Rails.application.routes'
+  def self.url_helpers
+    Rails.application.routes.url_helpers
+  end
+
   step :part
   failure Macros::Failure::Set() { |options, params|
     {
       message: "Could not find part with ID #{params[:part_id]}",
-      go_to: "/admin/parts/#{Part.first.id}/sections",
+      go_to: url_helpers.admin_part_sections_path(part_id: Part.first),
       step: 'part'
     }
   }
