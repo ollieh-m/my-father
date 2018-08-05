@@ -1,7 +1,14 @@
 <%= form_for form, url: admin_part_section_path, method: :patch do |f| %>
   <%= f.fields_for :versions do |vf| %>
-    <%= vf.file_field :document %>
-    <%= vf.hidden_field :document_cache %>
+    <% if vf.object.id %>
+      <%= vf.object.document.file.filename %>
+      <%= vf.label :delete, 'Delete' %>
+      <%= vf.check_box :delete %>
+    <% else %>
+      <%= vf.label :document, 'Add new version' %>
+      <%= vf.file_field :document %>
+      <%= vf.hidden_field :document_cache %>
+    <% end %>
   <% end %>
   <%= f.submit 'Update' %>
 <% end %>

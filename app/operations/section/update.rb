@@ -17,7 +17,11 @@ class Section::Update < Trailblazer::Operation
 
   step Contract::Validate( key: 'edit_section' )
   failure Macros::Failure::Set() { |options, params|
-    {step: 'contract.default.validate'}
+    {
+      type: :now,
+      step: 'contract.default.validate',
+      go_to: :edit
+    }
   }
 
   step Contract::Persist()

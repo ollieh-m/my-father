@@ -6,10 +6,13 @@ RSpec.describe 'Admin adds a version to a chapter' do
   let!(:section){ create(:section, part: part) }
 
   context 'Successfully' do
-    scenario 'and it appears in the chapter list' do
+    scenario 'and it appears in the list of versions', type: :document_upload do
       visit admin_part_sections_path(part)
       click_on 'Edit'
-      save_and_open_page
+      add_version
+      expect(page).to have_content 'dummy_document_1.docx'
+      expect(section.reload.versions.count).to eq 1
+      expect(section.versions.last.document.file.filename).to eq 'dummy_document_1.docx'
     end
   end
 
