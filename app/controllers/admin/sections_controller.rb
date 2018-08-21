@@ -1,5 +1,5 @@
 module Admin
-  class SectionsController < ApplicationController
+  class SectionsController < BaseController
 
     def index
       result = Section::Index.(params)
