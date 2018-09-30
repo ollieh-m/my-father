@@ -24,7 +24,7 @@ class Section::Update < Trailblazer::Operation
     }
   }
 
-  # step Contract::Persist()
+  step Contract::Persist()
 
   def model(options, params:, **)
     if part = Part.find_by(id: params[:part_id])

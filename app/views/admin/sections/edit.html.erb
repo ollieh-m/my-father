@@ -1,14 +1,16 @@
+<div class='js-class-admin-edit-section-page' />
+
 <%= form_for form, url: admin_part_section_path, method: :patch do |f| %>
   <%= f.fields_for :versions do |vf| %>
-    <% if vf.object.id %>
-      <%= vf.object.document.file.filename %>
-      <%= vf.label :delete, 'Delete' %>
-      <%= vf.check_box :delete %>
-    <% else %>
-      <%= vf.label :document, 'Add new version' %>
-      <%= vf.file_field :document %>
-      <%= vf.hidden_field :document_cache %>
-    <% end %>
+    <div>
+      <% if vf.object.id %>
+        <%= vf.object.document.file.filename %>
+        <%= vf.label :delete, 'Delete' %>
+        <%= vf.check_box :delete %>
+      <% else %>
+        <%= link_to 'Add new version', '#', id: 'add_new_version_toggle', data: {closed: true, form: render('version_form', vf: vf)} %>
+      <% end %>
+    </div>
   <% end %>
   <%= f.submit 'Update' %>
 <% end %>
