@@ -1,6 +1,12 @@
 <div class='js-class-admin-edit-section-page' />
 
 <%= form_for form, url: admin_part_section_path, method: :patch do |f| %>
+
+  <%= f.text_field :title %>
+  <% f.object.errors[:title].each do |error| %>
+    <%= error %>
+  <% end %>
+
   <%= f.fields_for :versions do |vf| %>
     <div>
       <% if vf.object.id %>
@@ -8,9 +14,21 @@
         <%= vf.label :delete, 'Delete' %>
         <%= vf.check_box :delete %>
       <% else %>
-        <%= link_to 'Add new version', '#', id: 'add_new_version_toggle', data: {closed: true, form: render('version_form', vf: vf)} %>
+        <% if vf.object.document_cache || vf.object.errors.present? %>
+          <%= link_to 'Undo', '#', id: 'add_new_version_toggle', data: {closed: false, form: render('version_form', vf: vf)} %>
+          <div>
+            <%= render('version_form', vf: vf) %>
+            <% vf.object.errors.messages.values.flatten.each do |error| %>
+              <%= error %>
+            <% end %>
+          </div>
+        <% else %>
+          <%= link_to 'Add new version', '#', id: 'add_new_version_toggle', data: {closed: true, form: render('version_form', vf: vf)} %>
+        <% end %>
       <% end %>
     </div>
   <% end %>
+
   <%= f.submit 'Update' %>
+
 <% end %>
