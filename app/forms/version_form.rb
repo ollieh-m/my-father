@@ -7,12 +7,20 @@ class VersionForm < Reform::Form
 
   def deserialize!(input)
     # set document_cache in case of re-render
-    input['document_cache'] = Version.new(document: input['document']).document_cache if input['document_cache'].blank?
+    input['document_cache'] = Version.new(document: input['document']).document_cache if new_attachment?(input['document'])
     super(input)
   end
 
   def document_cache_name
     document_cache.split('/').last if document_cache
+  end
+
+  def new_attachment?(document)
+    document.is_a?(DocumentUploader) && document.file
+  end
+
+  def existing_attachment?(document)
+    document.is_a?(ActionDispatch::Http::UploadedFile)
   end
 
   validation do
@@ -24,8 +32,8 @@ class VersionForm < Reform::Form
         # when no new file is attached, 'document' is DocumentUploader
         # when there is a new file attached, 'document' is ActionDispatch::Http::UploadedFile
         if document
-          return true if document.is_a?(DocumentUploader) && !!document.file
-          return true if document.is_a?(ActionDispatch::Http::UploadedFile)
+          return true if new_attachment?(document)
+          return true if existing_attachment?(document)
         end
       end
     end
