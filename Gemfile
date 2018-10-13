@@ -40,6 +40,7 @@ gem 'trailblazer', '~> 2.0.3'
 gem 'reform-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
+gem 'docx', '~> 0.2.07'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
