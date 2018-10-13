@@ -51,7 +51,7 @@ module Admin
       if result.success?
         redirect_to edit_admin_part_section_path
       else
-        handle_standard_failure(result['failure'])
+        handle_standard_failure(result['failure'], locals: {form: result['contract.default']})
       end
     end
 

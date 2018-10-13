@@ -7,7 +7,8 @@ module SectionsHelper
   end
 
   def add_version
-    attach_file "Add new version", Rails.root.join('spec','support','dummy_documents','dummy_document_1.docx')
+    click_on 'Add new version'
+    attach_file "Select attachment", Rails.root.join('spec','support','dummy_documents','dummy_document_1.docx')
     click_on 'Update'
   end
 
