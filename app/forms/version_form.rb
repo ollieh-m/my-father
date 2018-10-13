@@ -16,14 +16,14 @@ class VersionForm < Reform::Form
   end
 
   def new_attachment?(document)
-    document.is_a?(DocumentUploader) && document.file
+    document.class.to_s.include?('UploadedFile')
   end
 
   def existing_attachment?(document)
-    document.is_a?(ActionDispatch::Http::UploadedFile)
+    document.is_a?(DocumentUploader) && document.file
   end
 
-  validation do
+  validation :default do
     configure do
       config.messages_file = 'config/locales/error_messages.yml'
 
@@ -32,8 +32,10 @@ class VersionForm < Reform::Form
         # when no new file is attached, 'document' is DocumentUploader
         # when there is a new file attached, 'document' is ActionDispatch::Http::UploadedFile
         if document
-          return true if new_attachment?(document)
-          return true if existing_attachment?(document)
+          # new_attachment?
+          return true if document.class.to_s.include?('UploadedFile')
+          # existing_attachment?
+          return true if document.is_a?(DocumentUploader) && document.file
         end
       end
     end
@@ -43,6 +45,7 @@ class VersionForm < Reform::Form
     rule(document_attached: [:document, :document_cache]) do |document, document_cache|
       document_cache.filled? | document.attachment?
     end
+    # TO DO: validate that any attachment is a text or doc file
   end
 
 end

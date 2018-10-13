@@ -2,6 +2,7 @@
 
 <%= form_for form, url: admin_part_section_path, method: :patch do |f| %>
 
+  <%= f.label :title, 'Title' %>
   <%= f.text_field :title %>
   <% f.object.errors[:title].each do |error| %>
     <%= error %>
