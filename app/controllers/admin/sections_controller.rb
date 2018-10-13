@@ -1,6 +1,8 @@
 module Admin
   class SectionsController < BaseController
 
+    before_action :nav_setup
+
     def index
       result = Section::Index.(params)
 
@@ -25,7 +27,7 @@ module Admin
         }
       else
         render json: {
-          section: render_to_string(template: 'admin/sections/_form', layout: false, locals: {
+          section: render_to_string(template: 'admin/sections/_section_form', layout: false, locals: {
             form: result['contract.default'],
             error: result['failure'].message
           })
@@ -54,6 +56,17 @@ module Admin
         handle_standard_failure(result['failure'], locals: {form: result['contract.default']})
       end
     end
+
+    private
+
+    def nav_setup
+      @parts = Part.all
+    end
+
+    def current_part
+      @current_part ||= Part.find_by(id: params[:part_id])
+    end
+    helper_method :current_part
 
   end
 end
