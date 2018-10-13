@@ -23,7 +23,7 @@ class AdminEditSectionPage {
   }
 }
 
-$(()=> {
+$(document).on('turbolinks:load', () => {
   if ($('.js-class-admin-edit-section-page').length > 0) {
     const page = new AdminEditSectionPage()
     page.listen()
