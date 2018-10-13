@@ -1,0 +1,5 @@
+en:
+  errors:
+    rules:
+      document_attached:
+        attachment?: "a new version must have an attachment"

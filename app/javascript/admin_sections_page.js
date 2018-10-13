@@ -43,7 +43,7 @@ class AdminSectionsPage {
   }
 }
 
-$(()=> {
+$(document).on('turbolinks:load', () => {
   if ($('.js-class-admin-sections-page').length > 0) {
     const page = new AdminSectionsPage()
     page.listen()

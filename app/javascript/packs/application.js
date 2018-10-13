@@ -8,3 +8,4 @@
 // layout file, like app/views/layouts/application.html.erb
 
 import 'admin_sections_page';
+import 'admin_edit_section_page';
