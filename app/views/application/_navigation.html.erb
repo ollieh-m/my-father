@@ -1,0 +1,10 @@
+<nav class='non-admin'>
+  <ul>
+    <% @parts.each do |part| %>
+      <li><%= part.title %></li>
+      <% part.sections.each do |section| %>
+        <li><%= link_to section.title, part_section_path(part_id: part, id: section) %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</nav>
