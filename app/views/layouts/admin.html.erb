@@ -8,10 +8,13 @@
     <div class='flash-alert'>
       <%= flash[:alert] %>
     </div>
-    <main>
+
+    <main class='admin'>
       <%= yield %>
     </main>
 
-    <%= render('admin/navigation') %>
+    <aside class='admin'>
+      <%= render('admin/navigation') %>
+    </aside>
   </body>
 </html>

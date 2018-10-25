@@ -2,21 +2,27 @@ body, html {
   height: 100%
 }
 
-body {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-nav {
-  order: 1;
-  width: 100px;
+aside {
+  width: 220px;
   height: 100%;
+  position: fixed;
+  top: 0;
   overflow: auto;
+
+  &.admin {
+    right: 0;
+  }
+  &.standard {
+    left: 0;
+  }
 }
 
 main {
-  order: 2;
-  flex-grow: 1;
   height: 100%;
-  overflow: auto;
+  &.admin {
+    padding-right: 220px;
+  }
+  &.standard {
+    padding-left: 220px;
+  }
 }
