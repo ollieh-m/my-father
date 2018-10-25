@@ -1,1 +1,1 @@
-Rails.application.config.reform.validations = :dry
+Rails.application.config.reform.validations = :active_model

@@ -38,7 +38,7 @@ RSpec.describe Section::Create do
     end
 
     it 'Result includes the form errors' do
-      expect(result['contract.default'].errors[:title]).to eq ['must be filled']
+      expect(result['contract.default'].errors[:title]).to eq ["can't be blank"]
     end
   end
 
