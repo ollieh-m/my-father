@@ -20,7 +20,7 @@ CarrierWave.configure do |config|
     config.fog_public     = false
     config.fog_attributes = { cache_control: "public, max-age=#{1.hour.to_i}" }
 
-    config.fog_directory = 'myfatherdocuments'
+    config.fog_directory = 'myfather'
     config.storage = :fog
     config.cache_storage = :fog
     config.cache_dir = "#{Rails.env}/tmp"
