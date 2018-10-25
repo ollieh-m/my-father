@@ -23,7 +23,7 @@ RSpec.describe 'Admin creates a new chapter' do
       create_section(title: '')
 
       expect(current_path).to eq admin_part_sections_path(part)
-      expect(page).to have_content('must be filled')
+      expect(page).to have_content("can't be blank")
       expect(Section.all.count).to eq 0
 
       fill_in 'create_section_title', with: 'A valid title'

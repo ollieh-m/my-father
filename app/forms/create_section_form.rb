@@ -1,9 +1,7 @@
 class CreateSectionForm < Reform::Form
 
-  property :title
+  validates :title, presence: true
 
-  validation do
-    required(:title).filled
-  end
+  property :title
 
 end

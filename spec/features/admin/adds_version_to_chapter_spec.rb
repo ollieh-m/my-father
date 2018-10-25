@@ -20,7 +20,7 @@ RSpec.describe 'Admin adds a version to a chapter' do
       click_on 'Edit'
       fill_in 'Title', with: ''
       add_version
-      expect(page).to have_content "must be filled"
+      expect(page).to have_content "can't be blank"
       fill_in 'Title', with: 'New title'
       click_on 'Update'
       expect(page).to have_content 'dummy_document_1.docx'
@@ -35,7 +35,7 @@ RSpec.describe 'Admin adds a version to a chapter' do
       fill_in 'Title', with: 'New title'
       click_on 'Add new version'
       click_on 'Update'
-      expect(page).to have_content "must be filled or a new version must have an attachment"
+      expect(page).to have_content "a new version must have an attachment"
       click_on 'Undo'
       click_on 'Update'
       expect(section.reload.title).to eq 'New title'
