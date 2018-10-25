@@ -10,5 +10,7 @@ RSpec.describe 'User views latest version of a chapter' do
   scenario 'successfully', type: :document_upload do
     visit part_section_path(part_id: part, id: section)
 
+    save_and_open_page
+
   end
 end
