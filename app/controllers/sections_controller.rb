@@ -3,11 +3,14 @@ class SectionsController < ApplicationController
   before_action :nav_setup
 
   def show
-    # this demonstrates how we'll get the paragraphs from the document
-    version = Section.find(params[:id]).versions.last
-    doc = Docx::Document.open(version.document.file.file)
-    doc.paragraphs.each do |p|
-      puts p
+    result = Section::Show.(params)
+
+    if result.success?
+      render locals: {
+        text: result['text']
+      }
+    else
+      handle_standard_failure(result['failure'])
     end
   end
 

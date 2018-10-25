@@ -41,6 +41,7 @@ gem 'reform-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
 gem 'docx', '~> 0.2.07'
+gem 'file_validators'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -67,6 +68,7 @@ group :test do
   gem 'timecop'
   gem 'capybara', require: false
   gem 'poltergeist', require: false
+  gem 'launchy'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
