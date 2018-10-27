@@ -33,10 +33,17 @@ class Section::Show < Trailblazer::Operation
 
   def read(options, params:, **)
     begin
-      doc = Docx::Document.open(options['version'].document.file.file)
+      document = options['version'].document
+      file = if document.file.class == CarrierWave::Storage::Fog::File
+        URI.parse(document.url).open
+      else
+        document.file.file
+      end
+      doc = Docx::Document.open(file)
       options['text'] = doc.to_html
     rescue => e
       options['text.failure'] = e.message
+      false
     end
   end
 
