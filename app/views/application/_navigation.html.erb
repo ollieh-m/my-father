@@ -1,8 +1,17 @@
-<ul>
+<ul class='menu'>
   <% @parts.each do |part| %>
-    <li><%= part.title %></li>
-    <% part.sections.each do |section| %>
-      <li><%= link_to section.title, part_section_path(part_id: part, id: section) %></li>
-    <% end %>
+  	<div class='menu__section'>
+	    <li class='menu__section-header' data-id='<%= part.id %>'><%= part.title %></li>
+	    <% part.sections.each do |section| %>
+	    	<div class="menu__link">
+	    		<%= link_to part_section_path(part_id: part, id: section) do %>
+		    		<li data-parent-id='<%= part.id %>'>
+		    			<%= section.title %>	
+		    		</li>
+		    	<% end %>
+	    		<div class="arrow arrow-left <%= 'active' if current_section == section %> standard"></div>
+	    	</div>
+	    <% end %>
+	  </div>
   <% end %>
 </ul>

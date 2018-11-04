@@ -27,4 +27,9 @@ class SectionsController < ApplicationController
     @parts = Part.all
   end
 
+  def current_section
+    @current_section ||= Section.find_by(id: params[:id])
+  end
+  helper_method :current_section
+
 end
