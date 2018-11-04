@@ -1,7 +1,7 @@
 .button {
-	background-color: $background;
+	background-color: $background-primary;
 	border: 2px solid $border;
-	padding: 10px;
+	padding: $padding;
 
 	text-decoration: none;
 }

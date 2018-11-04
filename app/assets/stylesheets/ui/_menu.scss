@@ -1,0 +1,45 @@
+.menu {
+	list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+  	padding: $padding;
+  	margin-bottom: 2px;
+		border: 1px solid $border;
+  	background-color: $background-secondary;
+  }
+
+  a {
+  	text-decoration: none;
+  }
+
+  .menu__section {
+  	margin-bottom: $padding;
+
+  	.menu__section-header {
+  		background-color: $background-primary;
+  	}
+  }
+
+  .menu__link {
+  	position: relative;
+
+  	.arrow {
+  		display: none;
+  		position: absolute;
+  		top: 5px;
+
+  		&.admin {
+  			left: -1 * $padding * 2;
+  		}
+  		&.standard {
+  			right: -1 * $padding * 2;
+  		}
+
+  		&.active {
+  			display: inline-block;
+  		}
+  	}
+  }
+}

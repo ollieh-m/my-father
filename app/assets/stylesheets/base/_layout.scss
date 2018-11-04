@@ -1,13 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
 body, html {
-  height: 100%
+  height: 100%;
 }
 
 aside {
-  width: 220px;
+  width: $sidebar-width;
   height: 100%;
   position: fixed;
   top: 0;
   overflow: auto;
+  padding: $padding * 2;
+  background-color: $background-secondary;
 
   &.admin {
     right: 0;
@@ -20,9 +26,9 @@ aside {
 main {
   height: 100%;
   &.admin {
-    padding-right: 220px;
+    padding-right: $sidebar-width;
   }
   &.standard {
-    padding-left: 220px;
+    padding-left: $sidebar-width;
   }
 }
