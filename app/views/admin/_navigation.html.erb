@@ -1,9 +1,7 @@
-<nav>
-  <ul>
-    <% @parts.each do |part| %>
-      <li class="<%= 'active' if current_part == part %>">
-        <%= link_to part.title, admin_part_sections_path(part) %>
-      </li>
-    <% end %>
-  </ul>
-</nav>
+<ul>
+  <% @parts.each do |part| %>
+    <li class="<%= 'active' if current_part == part %>">
+      <%= link_to part.title, admin_part_sections_path(part) %>
+    </li>
+  <% end %>
+</ul>

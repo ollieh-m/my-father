@@ -86,4 +86,10 @@ production:
   <<: *default
   database: my-father_production
   username: my-father
-  password: <%= ENV['MY-FATHER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
+
+edge:
+  <<: *default
+  database: my-father_edge
+  username: my-father
+  url: <%= ENV['DATABASE_URL'] %>

@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render('layouts/head') %>
+    <%= render('head') %>
   </head>
 
   <body>
     <div class='flash-alert'>
       <%= flash[:alert] %>
     </div>
-    <%= yield %>
+
+    <aside class='standard'>
+      <%= render('navigation') %>
+    </aside>
+
+    <main class='standard'>
+      <%= yield %>
+    </main>
   </body>
 </html>
