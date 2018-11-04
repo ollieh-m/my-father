@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :parts, only: [] do
-    resources :sections, only: [:show]
+    resources :sections, only: [:show, :index]
   end
 
 end
