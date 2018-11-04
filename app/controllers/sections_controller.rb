@@ -10,7 +10,7 @@ class SectionsController < ApplicationController
         text: result['text']
       }
     else
-      handle_standard_failure(result['failure'])
+      handle_standard_failure(result['failure'], locals: {text: result['failure'].detail})
     end
   end
 
