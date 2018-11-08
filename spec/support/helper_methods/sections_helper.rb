@@ -12,6 +12,13 @@ module SectionsHelper
     click_on 'Update'
   end
 
+  def remove_version(version)
+    within(version) do
+      check 'Delete'
+    end
+    click_on 'Update'
+  end
+
 end
 
 RSpec.configure do |config|
