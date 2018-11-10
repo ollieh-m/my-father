@@ -2,6 +2,10 @@ require 'feature_helper'
 
 RSpec.describe 'Admin adds a version to a chapter' do
 
+  before do
+    mock_admin_access
+  end
+
   let!(:part){ create(:part) }
   let!(:section){ create(:section, part: part) }
 

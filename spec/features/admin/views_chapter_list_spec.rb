@@ -2,6 +2,10 @@ require 'feature_helper'
 
 RSpec.describe 'Admin views chapters in a part' do
 
+  before do
+    mock_admin_access
+  end
+  
   let!(:part_1){ create(:part) }
   let!(:part_2){ create(:part) }
 

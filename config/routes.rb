@@ -7,8 +7,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :parts, only: [] do
-    resources :sections, only: [:show, :index]
+  scope module: :standard do
+    resources :parts, only: [] do
+      resources :sections, only: [:show, :index]
+    end
   end
+
+  resources :sessions, only: [:new, :create, :destroy]
 
 end

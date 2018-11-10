@@ -2,6 +2,10 @@ require 'feature_helper'
 
 RSpec.describe 'Admin creates a new chapter' do
 
+  before do
+    mock_admin_access
+  end
+
   let!(:part){ create(:part) }
 
   context 'Successfully' do

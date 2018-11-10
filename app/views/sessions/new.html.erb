@@ -1,0 +1,17 @@
+<div class='overlay__wrapper'>
+	<div class='panel'>
+		<%= form_for form, url: sessions_path do |f| %>
+
+		  <%= f.label :password %>
+		  <%= f.text_field :password %>
+		  <% f.object.errors[:password].each do |error| %>
+		    <%= error %>
+		  <% end %>
+
+		  <%= f.hidden_field :redirect_to %>
+
+		  <%= f.submit 'Enter' %>
+
+		<% end %>
+	</div>
+</div>
