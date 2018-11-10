@@ -2,6 +2,10 @@ require 'feature_helper'
 
 RSpec.describe 'Admin removes a version from a section' do
 
+  before do
+    mock_admin_access
+  end
+
   let!(:part){ create(:part) }
   let!(:section){ create(:section, part: part) }
   let!(:version_1){ create(:version, section: section, document_name: 'dummy_document_1.docx') }
