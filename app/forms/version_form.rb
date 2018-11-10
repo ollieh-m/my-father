@@ -18,12 +18,16 @@ class VersionForm < Reform::Form
   end
 
   # this method is used in the recursive validation of nested forms
-  # we tap into it to set document_cache in case of re-render only if there
-  # is a new, valid attachment
+  # we tap into it to set document_cache in case of re-render
+  # if there is a new attachment
   def validate!(errors, prefix)
     return_value = super
-    if new_attachment? && self.errors[:document].empty?
-      self.document_cache = Version.new(document: document).document_cache
+    if new_attachment? 
+      if self.errors[:document].empty?
+        self.document_cache = Version.new(document: document).document_cache
+      else
+        self.document_cache = nil
+      end
     end
     return_value
   end
