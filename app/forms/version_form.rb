@@ -1,10 +1,10 @@
 class VersionForm < Reform::Form
 
-  validate :document_attached
+  validate :document_attached, unless: -> {delete == '1'}
   validates :document, file_content_type: {
     allow: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
     mode: :strict, 
-    unless: :document_blank,
+    unless: -> {document.blank? || delete == '1'},
     message: 'only .docx files are allowed'
   }
 
@@ -12,10 +12,6 @@ class VersionForm < Reform::Form
   property :delete, virtual: true
   property :document, skip_if: :marked_for_deletion
   property :document_cache, skip_if: :marked_for_deletion
-
-  def document_blank
-    document.blank?
-  end
 
   # this method is used in the recursive validation of nested forms
   # we tap into it to set document_cache in case of re-render
