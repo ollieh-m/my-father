@@ -2,7 +2,7 @@ class AdminSectionsPage {
   constructor() {
     this.add_new_section_link_id = '#add_new_section_link'
     this.$add_new_section_link = $(this.add_new_section_link_id)
-    this.$sections = $('.sections')
+    this.$sections = $('.list')
     this.add_new_section_form = this.$add_new_section_link.data('form')
   }
 
@@ -37,7 +37,7 @@ class AdminSectionsPage {
         data: JSON.stringify(data)
       })
         .done((response) => {
-          $(event.currentTarget).replaceWith(response.section)
+          $(event.currentTarget).parent().replaceWith(response.section)
         });
     })
   }
