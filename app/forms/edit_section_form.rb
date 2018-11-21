@@ -4,6 +4,12 @@ class EditSectionForm < Reform::Form
 
   property :title
 
-  collection :versions, form: VersionForm, populate_if_empty: Version, prepopulator: ->(options) { self.versions << Version.new }
+  collection :versions, form: VersionForm, populate_if_empty: Version, prepopulator: :ensure_empty_version
+
+  def ensure_empty_version(options)
+  	unless self.versions.any?{ |version| !version.id }
+  		self.versions << Version.new
+  	end
+  end
 
 end

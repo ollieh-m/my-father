@@ -14,7 +14,7 @@ module SectionsHelper
 
   def remove_version(version)
     within(version) do
-      check 'Delete'
+      find('label', text: 'Delete').click
     end
     click_on 'Update'
   end

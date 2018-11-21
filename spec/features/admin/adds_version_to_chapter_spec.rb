@@ -23,10 +23,10 @@ RSpec.describe 'Admin adds a version to a chapter' do
       visit admin_part_sections_path(part)
       click_on 'Edit'
       fill_in 'Title', with: ''
-      add_version
+      click_on 'Update'
       expect(page).to have_content "can't be blank"
       fill_in 'Title', with: 'New title'
-      click_on 'Update'
+      add_version
       expect(page).to have_content 'dummy_document_1.docx'
       expect(section.reload.versions.count).to eq 1
       expect(section.versions.last.document.file.filename).to eq 'dummy_document_1.docx'
