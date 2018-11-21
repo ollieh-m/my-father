@@ -12,16 +12,18 @@
     </div>
   </div>
 
-  <div class='fieldset'>
-    <label>Versions</label>
-    <div>
-      <%= f.fields_for :versions, include_id: false do |vf| %>
-        <% if vf.object.id %>
-          <%= render('existing_version_form', vf: vf) %>
+  <% if f.object.model.versions.any? %>
+    <div class='fieldset'>
+      <label>Versions</label>
+      <div>
+        <%= f.fields_for :versions, include_id: false do |vf| %>
+          <% if vf.object.id %>
+            <%= render('existing_version_form', vf: vf) %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div class='fieldset'>
     <%= f.fields_for :versions do |vf| %>
