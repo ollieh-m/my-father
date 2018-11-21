@@ -6,5 +6,8 @@
 }
 
 .actions {
+	display: flex;
+	flex-direction: row-reverse;
 	padding: $padding 0;
+
 }
