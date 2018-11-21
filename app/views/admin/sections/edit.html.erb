@@ -4,8 +4,8 @@
 
   <div class='fieldset'>
     <div class='field'>
-      <div><%= f.label :title, 'Title' %></div>
-      <div><%= f.text_field :title %></div>
+      <div class='input__label'><%= f.label :title, 'Title' %></div>
+      <div class='input__text'><%= f.text_field :title %></div>
       <% f.object.errors[:title].each do |error| %>
         <div><%= error %></div>
       <% end %>
@@ -14,7 +14,7 @@
 
   <% if f.object.model.versions.any? %>
     <div class='fieldset'>
-      <label>Versions</label>
+      <div class='input__label'>Versions</div>
       <div>
         <%= f.fields_for :versions, include_id: false do |vf| %>
           <% if vf.object.id %>

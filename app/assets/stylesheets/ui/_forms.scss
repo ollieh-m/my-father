@@ -20,5 +20,25 @@ form {
 		&:last-child {
 			padding-bottom: 0;
 		}
+
+		&__inline {
+			display: flex;
+			div {
+				margin-right: $padding;
+			}
+		}
+	}
+
+	.input__label {
+		padding-bottom: 2px;
+		font-size: 0.75rem;
+	}
+
+	.input__text {
+		input {
+			width: 100%;
+			font-size: 1rem;
+			padding: 2px;
+		}
 	}
 }

@@ -1,8 +1,9 @@
-<div class='existing-version field'>
-	<div>
-		<%= vf.object.document.file.filename %>
-	  <%= vf.label :delete, 'Delete' %>
-	  <%= vf.check_box :delete %>
-	  <%= vf.hidden_field :id %>
-	</div>
+<div class='existing-version field field__inline'>
+	<div><%= vf.object.document.file.filename %></div>
+  <div class='input__checkbox'>
+  	<%= vf.label :delete, 'Delete' %>
+  	<%= vf.check_box :delete %>
+  </div>
+	
+	<%= vf.hidden_field :id %>
 </div>

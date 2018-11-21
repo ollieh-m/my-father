@@ -1,7 +1,7 @@
 <% if form %>
   <div class='item'>
     <%= form_for form, url: admin_part_sections_path do |f| %>
-      <div><%= f.text_field :title %></div>
+      <div class='input__text'><%= f.text_field :title %></div>
       <% if f.object.errors.messages[:title] %>
         <% f.object.errors.messages[:title].each do |error| %>
           <div><%= error %></div>
