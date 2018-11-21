@@ -24,12 +24,18 @@ class Section::Update < Trailblazer::Operation
     }
   }
 
+  failure :prepopulate
+
   step Contract::Persist()
 
   def model(options, params:, **)
     if part = Part.find_by(id: params[:part_id])
       options['model'] = Section.find_by(id: params[:id], part: part)
     end
+  end
+
+  def prepopulate(options, params:, **)
+    options['contract.default'].prepopulate! if options['contract.default']
   end
 
 end
