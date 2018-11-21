@@ -1,8 +1,11 @@
 <div class='existing-version field field__inline'>
-	<div><%= vf.object.document.file.filename %></div>
+	<div class='input__checkbox__predecessor'><%= vf.object.document.file.filename %></div>
   <div class='input__checkbox'>
-  	<%= vf.label :delete, 'Delete' %>
-  	<%= vf.check_box :delete %>
+  	<%= vf.label :delete do %>
+  		Delete
+  		<%= vf.check_box :delete %>
+  		<span class='checkmark'></span>
+  	<% end %>
   </div>
 	
 	<%= vf.hidden_field :id %>

@@ -31,7 +31,7 @@ RSpec.describe 'Admin removes a version from a section' do
 
     versions = all('.existing-version', count: 2)
     within(versions[0]) do
-      uncheck 'Delete'
+      find('label', text: 'Delete').click
     end
     click_on 'Update'
     expect(page).to have_content 'dummy_document_1.docx'
