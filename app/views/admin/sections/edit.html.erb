@@ -4,10 +4,10 @@
 
   <div class='fieldset'>
     <div class='field'>
-      <%= f.label :title, 'Title' %>
-      <%= f.text_field :title %>
+      <div><%= f.label :title, 'Title' %></div>
+      <div><%= f.text_field :title %></div>
       <% f.object.errors[:title].each do |error| %>
-        <%= error %>
+        <div><%= error %></div>
       <% end %>
     </div>
   </div>

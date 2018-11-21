@@ -1,13 +1,13 @@
 <% if form %>
   <div class='item'>
     <%= form_for form, url: admin_part_sections_path do |f| %>
-      <%= f.text_field :title %>
+      <div><%= f.text_field :title %></div>
       <% if f.object.errors.messages[:title] %>
         <% f.object.errors.messages[:title].each do |error| %>
-          <%= error %>
+          <div><%= error %></div>
         <% end %>
       <% end %>
-      <%= f.submit 'Create' %>
+      <div><%= f.submit 'Create' %></div>
     <% end %>
   </div>
 <% else %>

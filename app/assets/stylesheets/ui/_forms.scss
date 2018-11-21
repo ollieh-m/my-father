@@ -9,18 +9,16 @@ form {
 		padding: $padding;
 		border: 1px solid $background-secondary;
 		margin-bottom: $padding;
-		
-		.field {
-			display: flex;
-			flex-direction: column;
-			padding: $padding 0;
+	}
 
-			&:first-child {
-				padding-top: 0;
-			}
-			&:last-child {
-				padding-bottom: 0;
-			}
+	.field {
+		padding: $padding 0;
+
+		&:first-child {
+			padding-top: 0;
+		}
+		&:last-child {
+			padding-bottom: 0;
 		}
 	}
 }
