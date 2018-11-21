@@ -1,6 +1,10 @@
-<div class='new-version'>
+<div class='new-version field'>
   <%= vf.label :document, 'Select attachment' %>
   <%= vf.file_field :document %>
   <%= vf.hidden_field :document_cache %>
   <%= vf.object.document_cache_name %>
+
+  <% vf.object.errors.messages.values.flatten.each do |error| %>
+    <%= error %>
+  <% end %>
 </div>
