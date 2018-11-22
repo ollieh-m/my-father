@@ -28,7 +28,7 @@ form {
 
 	.input__label {
 		padding-bottom: 2px;
-		font-size: 0.75rem;
+		font-size: $small-font-size;
 	}
 
 	.input__text {
@@ -68,7 +68,7 @@ form {
 		}
 
 		.input__upload__filename {
-			font-size: 0.75rem;
+			font-size: $small-font-size;
 			display: flex;
 			align-items: center;
 
