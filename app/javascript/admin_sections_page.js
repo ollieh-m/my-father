@@ -6,6 +6,21 @@ class AdminSectionsPage {
     this.add_new_section_form = this.$add_new_section_link.data('form')
   }
 
+  setup() {
+    update = (e, ui) => {
+      console.log(this.$sections.sortable("serialize"))
+    }
+
+    this.$sections.sortable({
+      axis: "y",
+      cancel: "div.not-sortable",
+      cursor: "move",
+      opacity: 0.5,
+      revert: 200,
+      update: update
+    })
+  }
+
   listen() {
     $('body').on('click', this.add_new_section_link_id, (event) => {
       event.preventDefault()
@@ -46,6 +61,7 @@ class AdminSectionsPage {
 $(document).on('turbolinks:load', () => {
   if ($('.js-class-admin-sections-page').length > 0) {
     const page = new AdminSectionsPage()
+    page.setup()
     page.listen()
   }
 })

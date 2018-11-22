@@ -6,6 +6,6 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-
+require("jquery-ui/ui/widgets/sortable");
 import 'admin_sections_page';
 import 'admin_edit_section_page';
