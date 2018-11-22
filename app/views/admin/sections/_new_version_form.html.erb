@@ -1,7 +1,15 @@
 <div class='new-version field'>
-  <div class='input__label'><%= vf.label :document, 'Select attachment' %></div>
-  <div><%= vf.file_field :document %></div>
-  <div><%= vf.object.document_cache_name %></div>
+  <div class='input__upload'>
+  	<%= vf.label :document do %>
+	  	Choose file
+	  	<%= vf.file_field :document %>
+  	<% end %>
+  	<div class='input__upload__filename'>
+  		<% if vf.object.document_cache_name %>
+  			<p><%= vf.object.document_cache_name %> will be added when you click Update</p>
+  		<% end %>
+  	</div>
+  </div>
 
   <% vf.object.errors.messages.values.flatten.each do |error| %>
     <div><%= error %></div>

@@ -54,7 +54,7 @@ RSpec.describe 'Admin adds a version to a chapter' do
       # check that simply resubmitting doesn't bypass validation
       click_on 'Update'
       expect(page).to have_content "a new version must have an attachment"
-      attach_file "Select attachment", Rails.root.join('spec','support','dummy_documents','dummy_document_1.docx')
+      attach_file "Choose file", Rails.root.join('spec','support','dummy_documents','dummy_document_1.docx'), make_visible: true
       click_on 'Update'
       expect(page).to have_content 'dummy_document_1.docx'
       expect(section.reload.versions.count).to eq 1
@@ -71,14 +71,14 @@ RSpec.describe 'Admin adds a version to a chapter' do
       expect(page).to have_content "can't be blank"
       # correct title but change attachment to be invalid
       fill_in 'Title', with: 'New title'
-      attach_file "Select attachment", Rails.root.join('spec','support','dummy_documents','testcard.jpg')
+      attach_file "Choose file", Rails.root.join('spec','support','dummy_documents','testcard.jpg'), make_visible: true
       click_on 'Update'
       expect(page).to have_content "only .docx files are allowed"
       # check that simply resubmitting does not send the initial, valid attachment
       click_on 'Update'
       expect(page).to have_content "a new version must have an attachment"
       # attach a valid file
-      attach_file "Select attachment", Rails.root.join('spec','support','dummy_documents','dummy_document_1.docx')
+      attach_file "Choose file", Rails.root.join('spec','support','dummy_documents','dummy_document_1.docx'), make_visible: true
       click_on 'Update'
       expect(page).to have_content 'dummy_document_1.docx'
       expect(section.reload.versions.count).to eq 1
