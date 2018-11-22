@@ -39,6 +39,45 @@ form {
 		}
 	}
 
+	.input__upload {
+		display: flex;
+
+		label {
+			display: inline-block;
+			cursor: pointer;
+			margin-right: $padding;
+			background-color: $background-primary;
+
+			border: 2px solid $border;
+			padding: $padding * 0.5;
+			border-radius: 0.5rem;
+			text-decoration: none;
+			flex-shrink: 0;
+
+			&:hover {
+				background-color: $background-secondary;
+			}
+		}
+
+	  input[type=file] {
+		  position: absolute;
+		  opacity: 0;
+		  cursor: pointer;
+		  height: 0;
+		  width: 0;
+		}
+
+		.input__upload__filename {
+			font-size: 0.75rem;
+			display: flex;
+			align-items: center;
+
+			p {
+				margin: 0;
+			}
+		}
+	}
+
 	.input__checkbox {
 		border: 1px solid $background-secondary;
 		padding: 2px;

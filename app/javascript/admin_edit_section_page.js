@@ -20,6 +20,12 @@ class AdminEditSectionPage {
         this.$add_new_version_toggle.prev().remove()
       }
     })
+
+    $('body').on('change', 'input[type="file"]', (event) => {
+      name = $(event.currentTarget)[0].files[0].name
+      filenameElement = $(event.currentTarget).parents('.input__upload').children('.input__upload__filename')
+      filenameElement.html(`<p>${name} will be added when you click Update</p>`)
+    });
   }
 }
 
