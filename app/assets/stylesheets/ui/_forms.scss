@@ -1,7 +1,14 @@
 .actions {
-	display: flex;
-	flex-direction: row-reverse;
 	padding: $padding 0;
+
+	&__left {
+		padding-bottom: 0;
+	}
+
+	&__right {
+		display: flex;
+		flex-direction: row-reverse;
+	}
 }
 
 form {

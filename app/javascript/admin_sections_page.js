@@ -12,6 +12,7 @@ class AdminSectionsPage {
       event.stopImmediatePropagation()
 
       this.$sections.append(this.add_new_section_form)
+      $('input#create_section_title').last().focus()
     })
 
     $('body').on('submit', 'form.new_create_section', (event) => {

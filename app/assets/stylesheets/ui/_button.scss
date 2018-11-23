@@ -3,6 +3,7 @@
 	border-radius: 0.2rem;
 	text-decoration: none;
 	border: 2px solid $border;
+	cursor: pointer;
 
 	&__primary {
 		border: 2px solid $background-secondary;
@@ -21,7 +22,6 @@
 		padding-left: $padding * 0.5;
 		padding-right: $padding * 0.5;
 		font-size: 0.8rem;
-		margin-left: $padding;
 		border: 2px solid $background-secondary;
 		color: $background-secondary;
 
