@@ -23,16 +23,20 @@
           <%= render('existing_version_form', vf: vf) %>
         <% elsif vf.object.document_cache || vf.object.errors.present? %>
           <%= render('new_version_form', vf: vf) %>
-          <%= link_to 'Undo', '#', id: 'add_new_version_toggle', data: {closed: false, form: render('new_version_form', vf: vf)} %>
+          <div class='actions actions__right'>
+            <%= link_to 'Undo', '#', id: 'add_new_version_toggle', class: 'button button__small', data: {closed: false, form: render('new_version_form', vf: vf)} %>
+          </div>
         <% else %>
-          <%= link_to 'Add new version', '#', id: 'add_new_version_toggle', data: {closed: true, form: render('new_version_form', vf: vf)} %>
+          <div class='actions actions__right'>
+            <%= link_to 'Add new version', '#', id: 'add_new_version_toggle', class: 'button button__small', data: {closed: true, form: render('new_version_form', vf: vf)} %>
+          </div>
         <% end %>
       <% end %>
     </div>
   </div>
 
-  <div class='actions'>
-    <%= f.submit 'Update' %>
+  <div class='actions actions__right'>
+    <%= f.submit 'Update', class: 'button button__medium' %>
   </div>
 
 <% end %>
