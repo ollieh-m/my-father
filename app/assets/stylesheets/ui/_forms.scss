@@ -26,6 +26,24 @@ form {
 		}
 	}
 
+	.error {
+		font-size: $small-font-size;
+		color: red;
+
+		p {
+			margin: 0;
+
+			&:before {
+				font-family: "Material Icons";
+	    	content: "warning";
+	    	padding-right: 2px;
+	    	position: relative;
+	    	top: 2px;
+			}
+		}
+
+	}
+
 	.input__label {
 		padding-bottom: 2px;
 		font-size: $small-font-size;

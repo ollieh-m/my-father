@@ -12,7 +12,9 @@
   </div>
 
   <% vf.object.errors.messages.values.flatten.each do |error| %>
-    <div><%= error %></div>
+    <div class='error'>
+      <p><%= error %></p>
+    </div>
   <% end %>
   
   <%= vf.hidden_field :document_cache %>
