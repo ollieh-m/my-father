@@ -4,10 +4,8 @@
   padding: 0;
 
   li {
-  	padding: $padding;
   	margin-bottom: 2px;
-		border: 1px solid $border;
-  	background-color: $background-secondary;
+    padding: $padding;
   }
 
   a {
@@ -18,7 +16,9 @@
   	margin-bottom: $padding;
 
   	.menu__section-header {
+      font-size: 1.1rem;
   		background-color: $background-primary;
+      color: $background-secondary;
   	}
   }
 
@@ -28,18 +28,32 @@
   	.arrow {
   		display: none;
   		position: absolute;
-  		top: 5px;
 
-  		&.admin {
-  			left: -1 * $padding * 2;
-  		}
-  		&.standard {
-  			right: -1 * $padding * 2;
+      &.admin {
+        left: -1 * $padding * 2;
+        top: 20px;
+      }
+      &.standard {
+        right: -1 * $padding * 2;
+  		  top: 5px;
   		}
 
   		&.active {
   			display: inline-block;
   		}
   	}
+
+    &__with-header {
+      padding-top: $padding * 0.5;
+      padding-bottom: $padding * 0.5;
+      border: 1px solid $background-primary;
+      background-color: $background-secondary;
+      color: $text-color;
+
+      &.active, &:hover {
+        background-color: $background-primary;
+        color: $background-secondary;
+      } 
+    }
   }
 }

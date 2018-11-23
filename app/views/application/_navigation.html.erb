@@ -5,7 +5,7 @@
 	    <% part.sections.each do |section| %>
 	    	<div class="menu__link">
 	    		<%= link_to part_section_path(part_id: part, id: section) do %>
-		    		<li data-parent-id='<%= part.id %>'>
+		    		<li class="menu__link__with-header <%= 'active' if current_section == section %>" data-parent-id='<%= part.id %>'>
 		    			<%= section.title %>	
 		    		</li>
 		    	<% end %>
