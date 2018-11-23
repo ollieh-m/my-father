@@ -1,9 +1,6 @@
 .actions {
-	padding: $padding 0;
-
-	&__left {
-		padding-bottom: 0;
-	}
+	padding: 0;
+	padding-top: $padding;
 
 	&__right {
 		display: flex;
@@ -74,13 +71,14 @@ form {
 			background-color: $background-primary;
 
 			border: 2px solid $border;
-			padding: $padding * 0.5;
-			border-radius: 0.5rem;
+			padding: $padding * 0.4;
+			border-radius: 0.7rem;
 			text-decoration: none;
 			flex-shrink: 0;
 
 			&:hover {
-				background-color: $background-secondary;
+				color: $background-secondary;
+				border: 2px solid $background-secondary;
 			}
 		}
 
@@ -131,14 +129,6 @@ form {
 			  height: 25px;
 			  width: 25px;
 			  background-color: $background-secondary;
-			}
-
-			&:hover input ~ .checkmark {
-			  background-color: $background-dark;
-			}
-
-			input:checked ~ .checkmark {
-			  background-color: $selected;
 			}
 
 			.checkmark:after {
