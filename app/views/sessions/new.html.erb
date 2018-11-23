@@ -2,15 +2,21 @@
 	<div class='panel'>
 		<%= form_for form, url: sessions_path do |f| %>
 
-		  <%= f.label :password %>
-		  <%= f.text_field :password %>
-		  <% f.object.errors[:password].each do |error| %>
-		    <%= error %>
-		  <% end %>
+  		<div class='field'>
+  			<div class='input__label'><%= f.label :password %></div>
+    		<div class='input__text'><%= f.text_field :password %></div>
+			  <% f.object.errors[:password].each do |error| %>
+			    <div class='error'>
+	          <p><%= error %></p>
+	        </div>
+			  <% end %>
+			</div>
 
 		  <%= f.hidden_field :redirect_to %>
 
-		  <%= f.submit 'Enter' %>
+		  <div class='actions actions__right'>
+		    <%= f.submit 'Enter', class: 'button button__medium' %>
+		  </div>
 
 		<% end %>
 	</div>
