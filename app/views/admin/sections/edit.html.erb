@@ -8,7 +8,9 @@
       <div class='input__label'><%= f.label :title, 'Title' %></div>
       <div class='input__text'><%= f.text_field :title %></div>
       <% f.object.errors[:title].each do |error| %>
-        <div><%= error %></div>
+        <div class='error'>
+          <p><%= error %></p>
+        </div>
       <% end %>
     </div>
   </div>

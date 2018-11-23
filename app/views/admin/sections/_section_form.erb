@@ -4,12 +4,14 @@
       <div class='input__text'><%= f.text_field :title %></div>
       <% if f.object.errors.messages[:title] %>
         <% f.object.errors.messages[:title].each do |error| %>
-          <div><%= error %></div>
+          <div class='error'>
+            <p><%= error %></p>
+          </div>
         <% end %>
       <% end %>
       <div><%= f.submit 'Create' %></div>
     <% end %>
   </div>
 <% else %>
-  <div class='item'><%= error %></div>
+  <div class='item error'><%= error %></div>
 <% end %>
