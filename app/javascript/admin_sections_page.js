@@ -8,7 +8,22 @@ class AdminSectionsPage {
 
   setup() {
     update = (e, ui) => {
-      console.log(this.$sections.sortable("serialize"))
+      this.$sections.sortable("disable");
+
+      regex = /(\/admin\/parts\/)(\d+)/g;
+      partId = regex.exec(window.location.pathname)[2]
+      $.ajax({
+        method: "PATCH",
+        url: `/admin/parts/${partId}/sections/order`,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          authenticity_token: $('[name="csrf-token"]')[0].content,
+          ordered_sections: this.$sections.sortable("toArray")
+        })
+      }).done((response) => {
+          this.$sections.sortable("enable");
+        });
     }
 
     this.$sections.sortable({

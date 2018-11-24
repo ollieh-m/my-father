@@ -3,7 +3,10 @@ module Admin
 		class OrdersController < BaseController
 
 	    def update
-	      binding.pry
+	      # get part
+	      # get array of sections - check sections are from the part
+	      # check there are no other sections
+	      # update the order of each section
 	    end
 
 	    private
