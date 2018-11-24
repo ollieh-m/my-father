@@ -40,7 +40,14 @@ class SectionOrder::Update < Trailblazer::Operation
   def persist_order(options, params:, **)
   	ActiveRecord::Base.transaction do
 	  	options['sections'].each_with_index do |section, index|
-	  		section.update_attribute(:position, index + 1)
+        position = index + 1
+        current_section = options['part'].sections.find_by(position: position)
+        if current_section && current_section != section
+          # reset section that currently has the given position, to prevent temporary duplicate
+          # when we set the new position on this section
+          current_section.update_attribute(:position, nil) if current_section && current_section != section
+	  		end
+        section.update_attribute(:position, position)
 	  	end
 	  end
   end

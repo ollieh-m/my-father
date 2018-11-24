@@ -6,7 +6,9 @@ module Admin
 	    	result = SectionOrder::Update.(params)
 
 	    	if result.success?
-	    		render 200
+	    		render json: {
+	    			status: 'success'
+	    		}, status: 200
 	    	else
 	    		render json: {
 	    			error: result['failure'].message

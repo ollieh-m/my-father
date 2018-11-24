@@ -28,7 +28,7 @@ class Section::Index < Trailblazer::Operation
   end
 
   def sections(options, params:, **)
-    options['sections'] = Section.where(part: options['part'])
+    options['sections'] = Section.where(part: options['part']).by_position
   end
 
 end

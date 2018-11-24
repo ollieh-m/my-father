@@ -2,7 +2,7 @@
   <% @parts.each do |part| %>
   	<div class='menu__section'>
 	    <li class='menu__section-header' data-id='<%= part.id %>'><%= part.title %></li>
-	    <% part.sections.each do |section| %>
+	    <% part.sections.by_position.each do |section| %>
 	    	<div class="menu__link">
 	    		<%= link_to part_section_path(part_id: part, id: section) do %>
 		    		<li class="menu__link__with-header <%= 'active' if current_section == section %>" data-parent-id='<%= part.id %>'>

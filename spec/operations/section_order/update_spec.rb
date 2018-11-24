@@ -17,6 +17,15 @@ RSpec.describe SectionOrder::Update do
   	expect(section_3.reload.position).to eq 2
   end
 
+  scenario 'Having already set positions' do
+    section_1.update_attribute(:position, 1)
+    section_2.update_attribute(:position, 2)
+    section_3.update_attribute(:position, 4)
+    array = ["section_#{section_2.id}", "section_#{section_3.id}", "section_#{section_1.id}"]
+    result = described_class.({:part_id => part.id, :ordered_sections => array})
+    expect(result.success?).to eq true
+  end
+
   scenario 'Passing in an array with an invalid section' do
   	array = ["section_#{section_2.id}", "section_#{section_3.id}", "section_#{section_4.id}"]
   	result = described_class.({:part_id => part.id, :ordered_sections => array})
