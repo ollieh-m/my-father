@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181124092144) do
+ActiveRecord::Schema.define(version: 20181124211949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20181124092144) do
     t.bigint "part_id"
     t.integer "position"
     t.index ["part_id"], name: "index_sections_on_part_id"
+    t.index ["position", "part_id"], name: "index_sections_on_position_and_part_id", unique: true
   end
 
   create_table "versions", force: :cascade do |t|

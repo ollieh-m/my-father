@@ -21,6 +21,7 @@ RSpec.describe SectionOrder::Update do
   	array = ["section_#{section_2.id}", "section_#{section_3.id}", "section_#{section_4.id}"]
   	result = described_class.({:part_id => part.id, :ordered_sections => array})
   	expect(result.success?).to eq false
+    expect(result['failure'].message).to eq "Sections are invalid"
   	expect(section_2.reload.position).to eq nil
   	expect(section_3.reload.position).to eq nil
   	expect(section_4.reload.position).to eq nil
@@ -30,10 +31,17 @@ RSpec.describe SectionOrder::Update do
   	array = ["section_#{section_2.id}", "section_#{section_3.id}"]
   	result = described_class.({:part_id => part.id, :ordered_sections => array})
   	expect(result.success?).to eq false
+    expect(result['failure'].message).to eq "Sections are invalid"
   	expect(section_2.reload.position).to eq nil
   	expect(section_3.reload.position).to eq nil
   end
 
- end
+  scenario 'Passing in an invalid part' do
+    result = described_class.({:part_id => part.id + 2})
+    expect(result.success?).to eq false
+    expect(result['failure'].message).to eq "Could not find part with ID #{part.id + 2}"
+  end
+
+end
 
 

@@ -22,6 +22,21 @@ RSpec.describe 'Admin creates a new chapter' do
       expect(Section.last.part).to eq part
     end
 
+    scenario 'and its position is automatically set', js: true do
+      create(:section, part: part, position: 1)
+      visit admin_part_sections_path(part)
+
+      create_section(title: 'A new section')
+      expect(page).to have_content('A new section')
+      section = Section.find_by(title: 'A new section')
+      expect(section.position).to eq 2
+
+      create_section(title: 'Another new section')
+      expect(page).to have_content('Another new section')
+      section = Section.find_by(title: 'Another new section')
+      expect(section.position).to eq 3
+    end
+
     scenario 'after initially providing invalid data', js: true do
       visit admin_part_sections_path(part)
       create_section(title: '')
@@ -32,6 +47,7 @@ RSpec.describe 'Admin creates a new chapter' do
 
       fill_in 'create_section_title', with: 'A valid title'
       click_on 'Create'
+      expect(page).to have_content('A valid title')
 
       expect(current_path).to eq admin_part_sections_path(part)
       expect(page).to have_link('Edit', href: edit_admin_part_section_path(part_id: part, id: Section.last))
@@ -41,15 +57,16 @@ RSpec.describe 'Admin creates a new chapter' do
 
     scenario 'multiple times', js: true do
       visit admin_part_sections_path(part)
+      
       create_section(title: 'A new section 1')
+      expect(page).to have_content('A new section 1')
+      expect(page).to have_link('Edit', href: edit_admin_part_section_path(part_id: part, id: Section.find_by(title: 'A new section 1')))
+      
       create_section(title: 'A new section 2')
+      expect(page).to have_content('A new section 2')
+      expect(page).to have_link('Edit', href: edit_admin_part_section_path(part_id: part, id: Section.find_by(title: 'A new section 2')))
 
       expect(current_path).to eq admin_part_sections_path(part)
-      expect(page).to have_content('A new section 1')
-      expect(page).to have_content('A new section 2')
-
-      expect(page).to have_link('Edit', href: edit_admin_part_section_path(part_id: part, id: Section.find_by(title: 'A new section 1')))
-      expect(page).to have_link('Edit', href: edit_admin_part_section_path(part_id: part, id: Section.find_by(title: 'A new section 2')))
 
       expect(Section.all.count).to eq 2
     end

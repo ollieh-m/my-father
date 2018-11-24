@@ -60,4 +60,28 @@ RSpec.describe Section::Create do
       expect(result['model'].title).to eq 'A title'
     end
   end
+
+  context 'Automatically setting the correct position' do
+    before do
+      create(:section, part: part, position: 1)
+    end
+
+    it 'Rescues from duplicates caused by race conditions' do
+      wait_for_it  = true
+
+      threads = 2.times.map do |i|
+        Thread.new do
+          true while wait_for_it
+          described_class.({part_id: part.id, 'create_section' => {title: "A title #{i}"}})
+        end
+      end
+      wait_for_it = false
+      threads.each(&:join)
+
+      section_2 = Section.find_by(title: "A title 0")
+      section_3 = Section.find_by(title: "A title 1")
+      expect(section_2.position).not_to eq section_3.position
+    end
+  end
+
 end

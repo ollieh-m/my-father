@@ -3,22 +3,16 @@ module Admin
 		class OrdersController < BaseController
 
 	    def update
-	      # get part
-	      # get array of sections - check sections are from the part
-	      # check there are no other sections
-	      # update the order of each section
-	    end
+	    	result = SectionOrder::Update.(params)
 
-	    private
-
-	    def nav_setup
-	      @parts = Part.all
+	    	if result.success?
+	    		render 200
+	    	else
+	    		render json: {
+	    			error: result['failure'].message
+	    		}, status: 400
+	    	end
 	    end
-
-	    def current_part
-	      @current_part ||= Part.find_by(id: params[:part_id])
-	    end
-	    helper_method :current_part
 
 	  end
   end
