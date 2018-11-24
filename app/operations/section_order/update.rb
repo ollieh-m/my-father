@@ -25,7 +25,7 @@ class SectionOrder::Update < Trailblazer::Operation
   end
 
   def sections(options, params:, **)
-  	options['sections'] = params[:ordered_sections].map do |section|
+  	options['sections'] = params[:ordered_sections].reject(&:blank?).map do |section|
   		id = /section_(\d+)/.match(section)[1]
   		options['part'].sections.find_by(id: id)
   	end.uniq

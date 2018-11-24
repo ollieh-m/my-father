@@ -22,7 +22,6 @@ class AdminSectionsPage {
           ordered_sections: this.$sections.sortable("toArray")
         })
       }).done((response) => {
-          console.log('enable')
           this.$sections.sortable("enable");
         });
     }
