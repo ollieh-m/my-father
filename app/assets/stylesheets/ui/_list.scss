@@ -1,6 +1,14 @@
 .list {
 	.item {
-		padding: $padding 0;
+		padding: none;
+		padding-top: $padding * 0.75;
+		padding-bottom: $padding * 0.75;
 		border-bottom: 1px solid $background-secondary;
+
+		p {
+			margin: 0;
+			margin-right: $padding;
+			display: inline-block;
+		}
 	}
 }
