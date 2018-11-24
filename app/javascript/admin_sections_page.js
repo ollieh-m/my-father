@@ -6,6 +6,36 @@ class AdminSectionsPage {
     this.add_new_section_form = this.$add_new_section_link.data('form')
   }
 
+  setup() {
+    update = (e, ui) => {
+      this.$sections.sortable("disable");
+
+      regex = /(\/admin\/parts\/)(\d+)/g;
+      partId = regex.exec(window.location.pathname)[2]
+      $.ajax({
+        method: "PATCH",
+        url: `/admin/parts/${partId}/sections/order`,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          authenticity_token: $('[name="csrf-token"]')[0].content,
+          ordered_sections: this.$sections.sortable("toArray")
+        })
+      }).done((response) => {
+          this.$sections.sortable("enable");
+        });
+    }
+
+    this.$sections.sortable({
+      axis: "y",
+      cancel: "div.not-sortable",
+      cursor: "move",
+      opacity: 0.5,
+      revert: 200,
+      update: update
+    })
+  }
+
   listen() {
     $('body').on('click', this.add_new_section_link_id, (event) => {
       event.preventDefault()
@@ -47,6 +77,7 @@ class AdminSectionsPage {
 $(document).on('turbolinks:load', () => {
   if ($('.js-class-admin-sections-page').length > 0) {
     const page = new AdminSectionsPage()
+    page.setup()
     page.listen()
   }
 })

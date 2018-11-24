@@ -1,5 +1,5 @@
 <% if form %>
-  <div class='item'>
+  <div class='item not-sortable'>
     <%= form_for form, url: admin_part_sections_path do |f| %>
       <div class='input__text'><%= f.text_field :title %></div>
       <% if f.object.errors.messages[:title] %>
@@ -13,5 +13,5 @@
     <% end %>
   </div>
 <% else %>
-  <div class='item error'><%= error %></div>
+  <div class='item not-sortable error'><%= error %></div>
 <% end %>

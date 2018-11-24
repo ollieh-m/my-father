@@ -1,5 +1,6 @@
 .list {
 	.item {
+		position: relative;
 		padding: none;
 		padding-top: $padding * 0.75;
 		padding-bottom: $padding * 0.75;
@@ -10,5 +11,15 @@
 			margin-right: $padding;
 			display: inline-block;
 		}
+
+		&__actions {
+			display: inline-block;
+			position: absolute;
+			right: 0;
+			top: 10px;
+			color: $background-secondary;
+			cursor: move;
+		}
 	}
+
 }
