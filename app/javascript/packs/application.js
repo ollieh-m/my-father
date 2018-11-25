@@ -9,3 +9,4 @@
 require("jquery-ui/ui/widgets/sortable");
 import 'admin_sections_page';
 import 'admin_edit_section_page';
+import 'animated_nav';
