@@ -1,3 +1,10 @@
+// only hide 'closed' nav sections with JS enabled
+.js .menu__section:not(.open) {
+  .menu__link__with-header {
+    display: none;
+  }
+}
+
 .menu {
 	list-style-type: none;
   margin: 0;
@@ -21,12 +28,6 @@
       color: $background-secondary;
       cursor: pointer;
   	}
-
-    &:not(.open) {
-      .menu__link__with-header {
-        display: none;
-      }
-    }
   }
 
   .menu__link {
