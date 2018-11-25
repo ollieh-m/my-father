@@ -19,7 +19,14 @@
       font-size: 1.1rem;
   		background-color: $background-primary;
       color: $background-secondary;
+      cursor: pointer;
   	}
+
+    &:not(.open) {
+      .menu__link__with-header {
+        display: none;
+      }
+    }
   }
 
   .menu__link {
@@ -31,11 +38,11 @@
 
       &.admin {
         left: -1 * $padding * 2;
-        top: 20px;
+        top: 0;
       }
       &.standard {
         right: -1 * $padding * 2;
-  		  top: 5px;
+  		  top: 0;
   		}
 
   		&.active {
@@ -44,7 +51,6 @@
   	}
 
     &__with-header {
-      display: none;
       padding-top: $padding * 0.5;
       padding-bottom: $padding * 0.5;
       border: 1px solid $background-primary;
@@ -54,7 +60,7 @@
       &.active, &:hover {
         background-color: $background-primary;
         color: $background-secondary;
-      } 
+      }
     }
   }
 }
