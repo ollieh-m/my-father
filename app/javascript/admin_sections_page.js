@@ -7,11 +7,11 @@ class AdminSectionsPage {
   }
 
   setup() {
-    update = (e, ui) => {
+    const update = (e, ui) => {
       this.$sections.sortable("disable");
 
-      regex = /(\/admin\/parts\/)(\d+)/g;
-      partId = regex.exec(window.location.pathname)[2]
+      const regex = /(\/admin\/parts\/)(\d+)/g;
+      const partId = regex.exec(window.location.pathname)[2]
       $.ajax({
         method: "PATCH",
         url: `/admin/parts/${partId}/sections/order`,
@@ -50,9 +50,9 @@ class AdminSectionsPage {
       event.stopImmediatePropagation()
 
       // prepare nested form data
-      data = {create_section: {}}
+      const data = {create_section: {}}
       $(event.currentTarget).serializeArray().forEach((param) =>{
-        sectionParam = param.name.match(/create_section\[([a-z]+)\]/)
+        const sectionParam = param.name.match(/create_section\[([a-z]+)\]/)
         if (sectionParam) {
           data.create_section[sectionParam[1]] = param.value
         } else {

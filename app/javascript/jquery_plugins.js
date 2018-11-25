@@ -1,31 +1,35 @@
 (function ($) {
 
 	$.fn.reverse = [].reverse;
+ 
+}(jQuery));
 
-  $.fn.cascade = function(items, direction, speed, callback) {
-		slide = (index, el) => {
+export const cascade = async (items, direction, speed, callback) => {
+	const slide = (el) => {
+		return new Promise((resolve, reject) => {
+			// perform slide in correct direction
 			if (direction == 'up') {
 				$(el).slideUp(speed, 'linear');
 			} else {
 				$(el).slideDown(speed, 'linear');
 			}
+			// wait duration of slide to resolve
+			setTimeout(()=>{
+				resolve()
+			}, speed)
+		})
+	}
 
-			if (index == items.length - 1) {
-				callback()
-			}
-		}
+	let orderedItems = items;
+	if (direction == 'up') {
+		orderedItems = items.reverse();
+	}
 
-		let orderedItems = items;
-		if (direction == 'up') {
-			orderedItems = items.reverse();
-		}
+	for (let item of orderedItems.get()) {
+		await slide(item)
+	}
 
-		orderedItems.each((index, el) => {
-			setTimeout(slide, index * speed);
-	  })
-    
-    return this;
-  };
- 
-}(jQuery));
+	callback();
+};
+
 
