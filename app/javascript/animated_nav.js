@@ -32,19 +32,19 @@ class AnimatedNav {
       })
   		if (section.find(`${this.link}.active`).length > 0) {
 				section.find(`${this.link}.active`).parent().siblings('.arrow').addClass('active')
-			}
-  	}
-  	
-  	$('body').on('click', this.sectionHeader, (event) => {
-  		const section = $(event.currentTarget).parent()
-  		
-  		if (section.hasClass('open')) {
-  			closeOpenSection(section)
-	  	} else {
-	  		closeOpenSection($('.menu__section.open').first())
-	  		openClosedSection(section)
-	  	}
-  	})
+      }
+    }
+    
+    $('body').on('click', this.sectionHeader, (event) => {
+      const section = $(event.currentTarget).parent()
+      
+      if (section.hasClass('open')) {
+        closeOpenSection(section)
+      } else {
+        closeOpenSection($('.menu__section.open').first())
+        openClosedSection(section)
+      }
+    })
 
     $('body').on('click', this.link, (event) => {
       event.preventDefault()
@@ -52,10 +52,13 @@ class AnimatedNav {
 
       const currentLink = $(event.currentTarget)
       const href = currentLink.parent().attr('href')
+
       $.ajax({
         method: "GET",
         url: href
       }).done((response) => {
+        history.pushState({forceReload: true}, null, href);
+
         $('.active').removeClass('active')
         currentLink.addClass('active')
         const arrow = currentLink.parent().siblings('.arrow')
@@ -65,13 +68,28 @@ class AnimatedNav {
         $('.text').html(newPage)
       });
     })
+
   }
 }
 
+$(document).ready(()=>{
+  $(window).on('popstate', ()=>{
+    // if we have gone back/forward to a page put in the history by pushState, 
+    // force the browser to load the page, because the
+    // it has no cached version of the page to display
+    const href = window.location.pathname    
+    if (history.state.forceReload) {
+      window.location.assign(href)
+    }
+  })
+})
+
 $(document).on('turbolinks:load', () => {
-  const nav = new AnimatedNav()
-  nav.setup()
-  nav.listen()
+  if ($('.js-class-standard-show-section-page').length > 0) {
+    const nav = new AnimatedNav()
+    nav.setup()
+    nav.listen()
+  }
 })
 
 

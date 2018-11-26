@@ -288,9 +288,9 @@ GEM
       declarative
       pipetree (>= 0.1.1, < 0.2.0)
       uber
-    turbolinks (5.1.1)
-      turbolinks-source (~> 5.1)
-    turbolinks-source (5.1.0)
+    turbolinks (5.2.0)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)

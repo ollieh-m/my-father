@@ -1,7 +1,5 @@
 (function ($) {
-
 	$.fn.reverse = [].reverse;
- 
 }(jQuery));
 
 export const cascade = async (items, direction, speed, callback) => {
