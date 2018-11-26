@@ -18,21 +18,21 @@ class AnimatedNav {
 
   listen() {
   	const closeOpenSection = (section) => {
+      const links = section.find(this.link)
+      cascade(links, 'up', this.animationSpeed, ()=>{
+        section.removeClass('open')
+      })
   		$('.arrow.active').removeClass('active')
-  		const links = section.find(this.link)
-  		cascade(links, 'up', this.animationSpeed, ()=>{
-  			section.removeClass('open')
-  		})
   	}
 
   	const openClosedSection = (section) => {
+      const links = section.find(this.link)
+      cascade(links, 'down', this.animationSpeed, ()=>{
+        section.addClass('open')
+      })
   		if (section.find(`${this.link}.active`).length > 0) {
 				section.find(`${this.link}.active`).parent().siblings('.arrow').addClass('active')
 			}
-  		const links = section.find(this.link)
-  		cascade(links, 'down', this.animationSpeed, ()=>{
-	  		section.addClass('open')
-	  	})
   	}
   	
   	$('body').on('click', this.sectionHeader, (event) => {
