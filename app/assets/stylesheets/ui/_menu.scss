@@ -1,3 +1,10 @@
+// only hide 'closed' nav sections with JS enabled
+.js .menu__section:not(.open) {
+  .menu__link__with-header {
+    display: none;
+  }
+}
+
 .menu {
 	list-style-type: none;
   margin: 0;
@@ -19,6 +26,7 @@
       font-size: 1.1rem;
   		background-color: $background-primary;
       color: $background-secondary;
+      cursor: pointer;
   	}
   }
 
@@ -31,11 +39,11 @@
 
       &.admin {
         left: -1 * $padding * 2;
-        top: 20px;
+        top: calc(50% - 15px);
       }
       &.standard {
         right: -1 * $padding * 2;
-  		  top: 5px;
+        top: calc(50% - 15px);
   		}
 
   		&.active {
@@ -53,7 +61,7 @@
       &.active, &:hover {
         background-color: $background-primary;
         color: $background-secondary;
-      } 
+      }
     }
   }
 }
