@@ -18,18 +18,18 @@ class AnimatedNav {
 
   listen() {
   	const closeOpenSection = (section) => {
-  		$('.arrow.active').hide()
-  		const links = section.find('.menu__link__with-header')
+  		$('.arrow.active').removeClass('active')
+  		const links = section.find(this.link)
   		cascade(links, 'up', this.animationSpeed, ()=>{
   			section.removeClass('open')
   		})
   	}
 
   	const openClosedSection = (section) => {
-  		if (section.find('.menu__link__with-header.active').length > 0) {
-				$('.arrow.active').show()
+  		if (section.find(`${this.link}.active`).length > 0) {
+				section.find(`${this.link}.active`).parent().siblings('.arrow').addClass('active')
 			}
-  		const links = section.find('.menu__link__with-header')
+  		const links = section.find(this.link)
   		cascade(links, 'down', this.animationSpeed, ()=>{
 	  		section.addClass('open')
 	  	})
@@ -45,6 +45,26 @@ class AnimatedNav {
 	  		openClosedSection(section)
 	  	}
   	})
+
+    $('body').on('click', this.link, (event) => {
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      const currentLink = $(event.currentTarget)
+      const href = currentLink.parent().attr('href')
+      $.ajax({
+        method: "GET",
+        url: href
+      }).done((response) => {
+        $('.active').removeClass('active')
+        currentLink.addClass('active')
+        const arrow = currentLink.parent().siblings('.arrow')
+        arrow.addClass('active')
+
+        const newPage = $(response).find('.text').html()
+        $('.text').html(newPage)
+      });
+    })
   }
 }
 
