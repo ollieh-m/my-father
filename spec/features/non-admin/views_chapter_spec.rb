@@ -25,10 +25,6 @@ RSpec.describe 'User views latest version of a chapter' do
 	  scenario 'because the section has no versions uploaded' do
 	  	visit part_section_path(part_id: part, id: section)
 
-	    within '.flash-alert' do
-	    	expect(page).to have_content 'Could not find a version'
-	    end
-
 	    within '.text' do
 	    	expect(page).to have_content 'Nothing to read...'
 	    end
@@ -40,10 +36,6 @@ RSpec.describe 'User views latest version of a chapter' do
 
 	  	visit part_section_path(part_id: part, id: section)
 
-	  	within '.flash-alert' do
-	    	expect(page).to have_content 'Could not read version'
-	    end
-
 	    within '.text' do
 	    	expect(page).to have_content 'invalid format'
 	    end
@@ -51,10 +43,6 @@ RSpec.describe 'User views latest version of a chapter' do
 
 	  scenario 'because the section does not exist' do
 	  	visit part_section_path(part_id: part, id: section.id + 1)
-
-	  	within '.flash-alert' do
-	    	expect(page).to have_content 'Could not find a version'
-	    end
 
 	    within '.text' do
 	    	expect(page).to have_content 'Nothing to read...'
