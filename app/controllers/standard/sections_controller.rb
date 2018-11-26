@@ -18,7 +18,7 @@ module Standard
 	        text: result['text']
 	      }
 	    else
-	      handle_standard_failure(result['failure'], locals: {text: result['failure'].detail})
+	      render result['failure'].go_to, locals: {text: result['failure'].detail}
 	    end
 	  end
 

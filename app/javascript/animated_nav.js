@@ -18,21 +18,21 @@ class AnimatedNav {
 
   listen() {
   	const closeOpenSection = (section) => {
-  		$('.arrow.active').hide()
-  		const links = section.find('.menu__link__with-header')
-  		cascade(links, 'up', this.animationSpeed, ()=>{
-  			section.removeClass('open')
-  		})
+      const links = section.find(this.link)
+      cascade(links, 'up', this.animationSpeed, ()=>{
+        section.removeClass('open')
+      })
+  		$('.arrow.active').removeClass('active')
   	}
 
   	const openClosedSection = (section) => {
-  		if (section.find('.menu__link__with-header.active').length > 0) {
-				$('.arrow.active').show()
+      const links = section.find(this.link)
+      cascade(links, 'down', this.animationSpeed, ()=>{
+        section.addClass('open')
+      })
+  		if (section.find(`${this.link}.active`).length > 0) {
+				section.find(`${this.link}.active`).parent().siblings('.arrow').addClass('active')
 			}
-  		const links = section.find('.menu__link__with-header')
-  		cascade(links, 'down', this.animationSpeed, ()=>{
-	  		section.addClass('open')
-	  	})
   	}
   	
   	$('body').on('click', this.sectionHeader, (event) => {
@@ -45,6 +45,26 @@ class AnimatedNav {
 	  		openClosedSection(section)
 	  	}
   	})
+
+    $('body').on('click', this.link, (event) => {
+      event.preventDefault()
+      event.stopImmediatePropagation()
+
+      const currentLink = $(event.currentTarget)
+      const href = currentLink.parent().attr('href')
+      $.ajax({
+        method: "GET",
+        url: href
+      }).done((response) => {
+        $('.active').removeClass('active')
+        currentLink.addClass('active')
+        const arrow = currentLink.parent().siblings('.arrow')
+        arrow.addClass('active')
+
+        const newPage = $(response).find('.text').html()
+        $('.text').html(newPage)
+      });
+    })
   }
 }
 
