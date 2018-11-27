@@ -37,7 +37,7 @@ class AnimatedNav {
     }
     
     $('body').on('click', this.sectionHeader, (event) => {
-      const section = $(event.currentTarget).parent()
+      const section = $(event.currentTarget).parents('.menu__section')
       
       if (section.hasClass('open')) {
         closeOpenSection(section)

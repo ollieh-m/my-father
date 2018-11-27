@@ -27,6 +27,14 @@ RSpec.describe 'Signing in' do
   		expect(current_path).to eq part_section_path(part_id: part, id: section_2)
 	 	end
 
+	 	scenario 'Via root page' do
+	 		visit root_path
+	 		fill_in 'Password', with: 'standard_password'
+	 		click_on 'Enter'
+  		active_arrow = find('.menu__section', text: 'About').find_all('.arrow.active')
+  		expect(active_arrow.length).to eq 1
+	 	end
+
 	 	scenario 'With incorrect password' do
 	 		visit new_session_path
   		fill_in 'Password', with: 'incorrect_password'
