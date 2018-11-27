@@ -3,8 +3,8 @@ require 'feature_helper'
 RSpec.describe 'Signing in' do
 
 	let!(:part){ create(:part) }
-  let!(:section_1){ create(:section, part: part) }
-  let!(:section_2){ create(:section, part: part) }
+  let!(:section_1){ create(:section, part: part, position: 2) }
+  let!(:section_2){ create(:section, part: part, position: 1) }
 
 	before do
 		allow(ENV).to receive(:[])
@@ -17,14 +17,14 @@ RSpec.describe 'Signing in' do
   		visit new_session_path
   		fill_in 'Password', with: 'standard_password'
   		click_on 'Enter'
-  		expect(current_path).to eq part_section_path(part_id: part, id: section_1)
+  		expect(current_path).to eq part_section_path(part_id: part, id: section_2)
 	 	end
 
 	 	scenario 'Via a different page' do
-	 		visit part_section_path(part_id: part, id: section_2)
+	 		visit part_section_path(part_id: part, id: section_1)
 	 		fill_in 'Password', with: 'standard_password'
 	 		click_on 'Enter'
-  		expect(current_path).to eq part_section_path(part_id: part, id: section_2)
+  		expect(current_path).to eq part_section_path(part_id: part, id: section_1)
 	 	end
 
 	 	scenario 'Via root page' do
