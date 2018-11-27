@@ -1,6 +1,6 @@
 <ul class='menu'>
   <% @parts.each do |part| %>
-  	<div class="menu__section <%= 'open' if open_menu_section?(part) %>">
+  	<div class="menu__section">
 	    <li class='menu__section-header' data-id='<%= part.id %>'><%= part.title %></li>
 	    <% part.sections.by_position.each do |section| %>
 	    	<div class="menu__link">

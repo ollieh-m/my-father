@@ -33,10 +33,5 @@ module Standard
 	  end
 	  helper_method :current_section
 
-	  def initial_load?
-	  	/\/parts\/\d+\/sections\/\d+/.match(request.referer).nil?
-	  end
-	  helper_method :initial_load?
-
 	end
 end

@@ -57,7 +57,7 @@ class AnimatedNav {
         method: "GET",
         url: href
       }).done((response) => {
-        history.pushState({forceReload: true}, null, href);
+        history.pushState({forceLoad: true}, null, href);
 
         $('.active').removeClass('active')
         currentLink.addClass('active')
@@ -72,16 +72,13 @@ class AnimatedNav {
   }
 }
 
-$(document).ready(()=>{
-  $(window).on('popstate', ()=>{
-    // if we have gone back/forward to a page put in the history by pushState, 
-    // force the browser to load the page, because the
-    // it has no cached version of the page to display
-    const href = window.location.pathname    
-    if (history.state.forceReload) {
-      window.location.assign(href)
-    }
-  })
+$(window).on('popstate', ()=>{
+  // if we have gone back/forward to a page put in the history by pushState, 
+  // force the browser to load the page, because it has no cached version of the page to display
+  const href = window.location.pathname    
+  if (history.state.forceLoad) {
+    window.location.assign(href)
+  }
 })
 
 $(document).on('turbolinks:load', () => {
