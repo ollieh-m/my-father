@@ -17,6 +17,6 @@
       <%= yield %>
     </main>
 
-    <%= link_to 'TO ADMIN AREA', admin_part_sections_path, class: 'button button__primary to-admin' %>
+    <%= link_to 'TO ADMIN AREA', admin_part_sections_path(params[:part_id] || 1), class: 'button button__primary to-admin' %>
   </body>
 </html>

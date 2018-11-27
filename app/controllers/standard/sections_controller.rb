@@ -1,8 +1,6 @@
 module Standard
 	class SectionsController < BaseController
 
-	  before_action :nav_setup
-
 	  def index
 	    part = Part.find_by(id: params[:part_id])
 	    if part && first_section = part.sections.first
@@ -21,17 +19,6 @@ module Standard
 	      render result['failure'].go_to, locals: {text: result['failure'].detail}
 	    end
 	  end
-
-	  private
-
-	  def nav_setup
-	    @parts = Part.all
-	  end
-
-	  def current_section
-	    @current_section ||= Section.find_by(id: params[:id])
-	  end
-	  helper_method :current_section
 
 	end
 end

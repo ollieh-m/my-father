@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :parts, only: [] do
       resources :sections, only: [:show, :index]
     end
+    resource :about, only: [:show]
   end
 
   resources :sessions, only: [:new, :create, :destroy]

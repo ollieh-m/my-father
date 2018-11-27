@@ -14,4 +14,11 @@
 	    <% end %>
 	  </div>
   <% end %>
+
+  <div class="menu__link menu__section">
+  	<%= link_to about_path do %>
+  		<li class="menu__section-header">About</li>
+  	<% end %>
+  	<div class="arrow arrow-left <%= 'active' if controller_name == 'abouts' %> standard"></div>
+  </div>
 </ul>
