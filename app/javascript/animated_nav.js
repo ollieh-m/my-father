@@ -4,13 +4,14 @@ class AnimatedNav {
   constructor() {
   	this.animationSpeed = 20;
     this.sectionHeader = '.menu__section-header'
-    this.link = '.menu__link__with-header'
+    this.linksWithHeader = '.menu__link__with-header'
+    this.links = '.menu__link a'
   }
 
   setup() {
-  	const activeNavSection = $(`${this.link}.active`).parent().parent().parent()
+  	const activeNavSection = $(`${this.linksWithHeader}.active`).parent().parent().parent()
   	if (!activeNavSection.hasClass('open')) {
-  		cascade(activeNavSection.find(this.link), 'down', this.animationSpeed, ()=>{
+  		cascade(activeNavSection.find(this.linksWithHeader), 'down', this.animationSpeed, ()=>{
   			activeNavSection.addClass('open')
   		})
   	}
@@ -18,7 +19,7 @@ class AnimatedNav {
 
   listen() {
   	const closeOpenSection = (section) => {
-      const links = section.find(this.link)
+      const links = section.find(this.linksWithHeader)
       cascade(links, 'up', this.animationSpeed, ()=>{
         section.removeClass('open')
       })
@@ -26,17 +27,17 @@ class AnimatedNav {
   	}
 
   	const openClosedSection = (section) => {
-      const links = section.find(this.link)
+      const links = section.find(this.linksWithHeader)
       cascade(links, 'down', this.animationSpeed, ()=>{
         section.addClass('open')
       })
-  		if (section.find(`${this.link}.active`).length > 0) {
-				section.find(`${this.link}.active`).parent().siblings('.arrow').addClass('active')
+  		if (section.find(`${this.linksWithHeader}.active`).length > 0) {
+				section.find(`${this.linksWithHeader}.active`).parent().siblings('.arrow').addClass('active')
       }
     }
     
     $('body').on('click', this.sectionHeader, (event) => {
-      const section = $(event.currentTarget).parent()
+      const section = $(event.currentTarget).parents('.menu__section')
       
       if (section.hasClass('open')) {
         closeOpenSection(section)
@@ -46,12 +47,11 @@ class AnimatedNav {
       }
     })
 
-    $('body').on('click', this.link, (event) => {
+    $('body').on('click', this.links, (event) => {
       event.preventDefault()
-      event.stopImmediatePropagation()
 
       const currentLink = $(event.currentTarget)
-      const href = currentLink.parent().attr('href')
+      const href = currentLink.attr('href')
 
       $.ajax({
         method: "GET",
@@ -60,9 +60,8 @@ class AnimatedNav {
         history.pushState({forceLoad: true}, null, href);
 
         $('.active').removeClass('active')
-        currentLink.addClass('active')
-        const arrow = currentLink.parent().siblings('.arrow')
-        arrow.addClass('active')
+        currentLink.children('li').addClass('active')
+        currentLink.siblings('.arrow').addClass('active')
 
         const newPage = $(response).find('.text').html()
         $('.text').html(newPage)
