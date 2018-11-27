@@ -6,9 +6,12 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-import Turbolinks from 'turbolinks'
-Turbolinks.start()
-import 'babel-polyfill'
+import Rails from 'rails-ujs';
+import Turbolinks from 'turbolinks';
+Rails.start();
+Turbolinks.start();
+import 'babel-polyfill';
+
 require("jquery-ui/ui/widgets/sortable");
 
 import 'jquery_plugins';
