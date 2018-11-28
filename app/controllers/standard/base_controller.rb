@@ -15,11 +15,12 @@ module Standard
     end
 
     def nav_setup
-      @parts = Part.all
+      @parts = Part.all.includes(:sections_by_position)
     end
 
     def current_section
-      @current_section ||= Section.find_by(id: params[:id])
+      return @current_section if defined?(@current_section) 
+      @current_section = Section.find_by(id: params[:id])
     end
     helper_method :current_section
 
