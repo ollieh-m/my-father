@@ -2,7 +2,8 @@ require 'feature_helper'
 
 RSpec.describe 'Signing in' do
 
-	let!(:part){ create(:part) }
+	let!(:part){ create(:part, title: "My Father (1926 - 2002)") }
+	let!(:part_2){ create(:part, title: "My Father keeps the PM waiting (1970)") }
   let!(:section_1){ create(:section, part: part, position: 2) }
   let!(:section_2){ create(:section, part: part, position: 1) }
 
