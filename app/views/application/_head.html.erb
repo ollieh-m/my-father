@@ -1,3 +1,27 @@
+<script async src="https://www.googletagmanager.com/gtag/js?id=<%= ENV['GA_TRACKING_ID'] %>"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', "<%= ENV['GA_TRACKING_ID'] %>");
+  
+  function triggerPageLoad(event){
+  	if (typeof gtag === 'function') {
+  		var url;
+  		if (event.data) {
+  			url = event.data.url;
+  		} else {
+  			url = event.detail.url;
+  		}
+      gtag('config', "<%= ENV['GA_TRACKING_ID'] %>", {
+        'page_location': url
+      });
+    }
+  }
+  document.addEventListener('turbolinks:load', triggerPageLoad);
+  document.addEventListener('animated-nav:load', triggerPageLoad);
+</script>
+
 <title>MyFather</title>
 <%= csrf_meta_tags %>
 <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -65,6 +65,9 @@ class AnimatedNav {
 
         const newPage = $(response).find('.text').html()
         $('.text').html(newPage)
+
+        // trigger custom event that we listen to in the page head to trigger a google analytics page load
+        document.dispatchEvent(new CustomEvent('animated-nav:load', { detail: {url: window.location.href }}))
       });
     })
 
