@@ -70,6 +70,20 @@ RSpec.describe Section::Show do
       expect(result['text'].length).to eq 77027
     end
   end
+
+  context 'With a section including a hyperlink', type: :document_upload do
+    before do
+      create(:version, section: section, document_name: 'dummy_document_with_link.docx')
+    end
+
+    let!(:result){ described_class.({part_id: part.id, id: section.id}) }
+
+    it 'Renders the link' do
+      expect(result['text']).to include(
+        "<a href=\"https://www.theguardian.com/news/2002/jan/29/guardianobituaries\">read one of his obituaries here</a>"
+      )
+    end
+  end
 end
 
 def expect_failure_to_find_version(result:)
