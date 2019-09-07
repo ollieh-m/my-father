@@ -35,17 +35,13 @@ class Section::Show < Trailblazer::Operation
 
   def read(options, params:, **)
     begin
-      document = options['version'].document
-      file = if document.file.class.to_s == "CarrierWave::Storage::Fog::File"
-        URI.parse(document.url).open
-      else
-        document.file.file
-      end
-      doc = Docx::Document.open(file)
-      options['text'] = doc.to_html
+      file = fetch_file(options['version'].document)
+      options['text'] = Docx::Document.open(file).to_html
     rescue => e
       options['text.failure'] = e.message
       false
+    ensure
+      close_file(file)
     end
   end
 
@@ -54,4 +50,19 @@ class Section::Show < Trailblazer::Operation
     options['text'] = sanitize without_newlines
   end
 
+  private
+
+    def fetch_file(document) 
+      if document.file.class.to_s == "CarrierWave::Storage::Fog::File"
+        URI.parse(document.url).open
+      else
+        document.file.file
+      end
+    end
+
+    def close_file(file)
+      if file.is_a?(Tempfile)
+        file.close && file.unlink
+      end
+    end
 end
