@@ -1,6 +1,7 @@
 GIT
   remote: https://github.com/ollieh-m/docx.git
-  revision: d77ac914e974a5294e963b863fa8dfa6c96d7f8e
+  revision: f2ca01c728205d8b84160b90b59834992789f7da
+  ref: f2ca01c728205d8b84160b90b59834992789f7da
   branch: support-hyperlinks
   specs:
     docx (0.3.0)
@@ -243,7 +244,7 @@ GEM
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
     ruby_dep (1.5.0)
-    rubyzip (1.2.3)
+    rubyzip (1.2.4)
     sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)

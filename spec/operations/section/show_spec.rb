@@ -80,7 +80,7 @@ RSpec.describe Section::Show do
 
     it 'Renders the link' do
       expect(result['text']).to include(
-        "<a href=\"https://www.theguardian.com/news/2002/jan/29/guardianobituaries\">read one of his obituaries here</a>"
+        "<a href=\"https://www.theguardian.com/news/2002/jan/29/guardianobituaries\" target=\"_blank\">read one of his obituaries here</a>"
       )
     end
   end

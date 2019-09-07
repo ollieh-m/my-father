@@ -47,7 +47,7 @@ class Section::Show < Trailblazer::Operation
 
   def custom_sanitize(options, params:, **)
     without_newlines = options['text'].gsub('\n', '')
-    options['text'] = sanitize without_newlines
+    options['text'] = sanitize(without_newlines, attributes: %w(href target))
   end
 
   private
