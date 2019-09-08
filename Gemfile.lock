@@ -215,6 +215,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redis (4.1.2)
     reform (2.2.4)
       disposable (>= 0.4.1)
       representable (>= 2.4.0, < 3.1.0)
@@ -333,6 +334,7 @@ DEPENDENCIES
   pry-byebug
   puma (~> 3.7)
   rails (~> 5.2)
+  redis
   reform-rails
   rspec-rails
   sass-rails (~> 5.0)
