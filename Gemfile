@@ -44,6 +44,7 @@ gem 'file_validators'
 gem 'cocaine'
 gem 'newrelic_rpm'
 gem 'barnes'
+gem 'redis'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
