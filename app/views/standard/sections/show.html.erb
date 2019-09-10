@@ -2,7 +2,7 @@
 
 <div class='text'>
 	<% if text %>
-		<%= text %>
+		<%= text.html_safe %>
 	<% else %>
 		<p>Nothing to read...</p>
 	<% end %>
