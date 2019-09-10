@@ -1,4 +1,6 @@
 class UploadedDocxFile
+  include ActionView::Helpers::SanitizeHelper
+
   attr_reader :upload, :local_file
 
   def initialize(upload)
@@ -6,7 +8,9 @@ class UploadedDocxFile
   end
 
   def to_html
-    Docx::Document.open(local_file).to_html
+    html = Docx::Document.open(local_file).to_html
+    html = html.gsub('\n', '')
+    sanitize(html, attributes: %w(href target))
   ensure
     close_file
   end

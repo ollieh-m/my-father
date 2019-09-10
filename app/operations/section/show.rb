@@ -1,7 +1,4 @@
 class Section::Show < Trailblazer::Operation
-
-  include ActionView::Helpers::SanitizeHelper
-
   step :version
   failure Macros::Failure::Set() { |options, params|
     {
@@ -23,8 +20,6 @@ class Section::Show < Trailblazer::Operation
     }
   }
 
-  step :custom_sanitize
-
   def version(options, params:, **)
     if part = Part.find_by(id: params[:part_id])
       if section = Section.find_by(id: params[:id], part: part)
@@ -42,10 +37,5 @@ class Section::Show < Trailblazer::Operation
       options['text.failure'] = e.message
       false
     end
-  end
-
-  def custom_sanitize(options, params:, **)
-    without_newlines = options['text'].gsub('\n', '')
-    options['text'] = sanitize(without_newlines, attributes: %w(href target))
   end
 end
