@@ -1,6 +1,6 @@
-<div id='delete-section-modal' class='overlay__wrapper hidden'>
-  <div class='panel'>
-    <%= link_to admin_part_sections_path, data: { modal_close: true } do %>
+<div id='delete-section-modal' class='modal hidden'>
+  <div class='modal__panel'>
+    <%= link_to admin_part_sections_path, class: "modal__close", data: { modal_close: true } do %>
       <i class="material-icons">
         clear
       </i>
@@ -8,8 +8,10 @@
 
     Are you sure? This cannot be undone
 
-    <%= button_to '#', disabled: true, method: :delete do %>
-      Yes, delete
-    <% end %>
+    <div class="actions">
+      <%= button_to '#', class: 'button button__medium', disabled: true, method: :delete do %>
+        Yes, delete
+      <% end %>
+    </div>
   </div>
 </div>

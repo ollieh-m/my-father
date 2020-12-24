@@ -1,7 +1,7 @@
-<div id="section_<%= section.id %>" class='item'>
+<div id="section_<%= section.id %>" class='list__item list-item'>
   <p><%= section.title %></p>
   <%= link_to 'Edit', edit_admin_part_section_path(id: section), class: 'button button__small' %>
-	<div class='item__actions'>
+	<div class='list-item__actions'>
     <%= link_to "#", data: { modal_target: "#delete-section-modal", delete_url: admin_part_section_path(id: section) } do %>
       <i class="material-icons">delete_forever</i>
     <% end %>
