@@ -4,6 +4,7 @@ class AdminSectionsPage {
     this.$add_new_section_link = $(this.add_new_section_link_id)
     this.$sections = $('.list')
     this.add_new_section_form = this.$add_new_section_link.data('form')
+    this.delete_section_button = '[data-modal-target="#delete-section-modal"]'
   }
 
   setup() {
@@ -70,6 +71,13 @@ class AdminSectionsPage {
         .done((response) => {
           $(event.currentTarget).parent().replaceWith(response.section)
         });
+    })
+
+    $('body').on('click', this.delete_section_button, (event) => {
+      const action = event.currentTarget.dataset.deleteUrl;
+      const form = $(event.currentTarget.dataset.modalTarget).find('form');
+      form.attr('action', action);
+      form.find('button').prop('disabled', false)
     })
   }
 }

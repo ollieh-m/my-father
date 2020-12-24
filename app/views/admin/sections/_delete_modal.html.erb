@@ -1,0 +1,15 @@
+<div id='delete-section-modal' class='overlay__wrapper hidden'>
+  <div class='panel'>
+    <%= link_to admin_part_sections_path, data: { modal_close: true } do %>
+      <i class="material-icons">
+        clear
+      </i>
+    <% end %>
+
+    Are you sure? This cannot be undone
+
+    <%= button_to '#', disabled: true, method: :delete do %>
+      Yes, delete
+    <% end %>
+  </div>
+</div>

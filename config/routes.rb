@@ -9,7 +9,7 @@ Rails.application.routes.draw do
         resource :order, only: [:update]
       end
 
-      resources :sections, only: [:index, :create, :edit, :update]
+      resources :sections, only: [:index, :create, :edit, :update, :destroy]
     end
   end
 
