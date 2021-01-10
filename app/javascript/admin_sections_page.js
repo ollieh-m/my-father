@@ -75,9 +75,9 @@ class AdminSectionsPage {
 
     $('body').on('click', this.delete_section_button, (event) => {
       const action = event.currentTarget.dataset.deleteUrl;
-      const form = $(event.currentTarget.dataset.modalTarget).find('form');
-      form.attr('action', action);
-      form.find('button').prop('disabled', false)
+      const modal = $(event.currentTarget.dataset.modalTarget)
+      modal.find('form').attr('action', action);
+      modal.find("[data-section-title]").text(event.currentTarget.dataset.sectionTitle);
     })
   }
 }
