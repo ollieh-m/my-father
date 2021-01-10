@@ -61,7 +61,7 @@ module Admin
       result = Section::Destroy.(params)
 
       if result.success?
-        flash[:alert] = "Successfully deleted #{result['section'].title}"
+        flash[:notice] = "Successfully deleted #{result['section'].title}"
         redirect_to admin_part_sections_path
       else
         handle_standard_failure(result['failure'])

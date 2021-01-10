@@ -1,0 +1,17 @@
+<div data-page-behaviour-flash="true" />
+
+<% flash.each do |type, message| %>
+  <% if message %>
+    <div data-flash="true" class="flash flash--<%= type %> hidden">
+      <div class="flash__content">
+        <div class="flash__message"><%= message %></div>
+
+        <div class="flash__close" data-flash-close="true">
+          <i class="material-icons">
+            clear
+          </i>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

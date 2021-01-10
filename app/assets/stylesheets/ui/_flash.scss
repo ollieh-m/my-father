@@ -1,0 +1,29 @@
+.flash {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  padding: $padding;
+
+  &--alert {
+    background-color: $danger;
+  }
+
+  &--notice {
+    color: white;
+    background-color: $success;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__message {
+    width: 100%;
+  }
+
+  &__close {
+    cursor: pointer;
+  }
+}
