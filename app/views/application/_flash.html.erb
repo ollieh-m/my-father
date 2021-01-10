@@ -2,7 +2,7 @@
 
 <% flash.each do |type, message| %>
   <% if message %>
-    <div data-flash="true" class="flash flash--<%= type %> hidden">
+    <div data-flash="true" class="flash flash--<%= type %>">
       <div class="flash__content">
         <div class="flash__message"><%= message %></div>
 
