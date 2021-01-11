@@ -33,7 +33,7 @@ RSpec.describe 'Admin views chapters in a part' do
     scenario 'and in the correct order' do
       visit admin_part_sections_path(part_1)
 
-      sections = all('.item')
+      sections = all('.list-item')
 
       within sections[0] do
         expect(page).to have_content(section_2.title)
