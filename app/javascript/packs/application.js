@@ -10,7 +10,8 @@ import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 Rails.start();
 Turbolinks.start();
-import 'babel-polyfill';
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 
 require("jquery-ui/ui/widgets/sortable");
 
