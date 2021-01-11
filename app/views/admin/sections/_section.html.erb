@@ -4,7 +4,7 @@
     <%= link_to 'Edit', edit_admin_part_section_path(id: section), class: 'button button__small' %>
   </div>
 	<div class='list-item__actions'>
-    <%= link_to "#", data: { modal_target: "#delete-section-modal", delete_url: admin_part_section_path(id: section), section_title: section.title } do %>
+    <%= link_to "#", data: { modal_target: "#delete-section-modal", delete_url: admin_part_section_path(id: section), section_title: section.title }, "aria-label": "Delete #{section.title}" do %>
       <i class="material-icons">delete_forever</i>
     <% end %>
 
