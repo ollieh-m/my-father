@@ -5,6 +5,7 @@ class AdminSectionsPage {
     this.$sections = $('.list')
     this.add_new_section_form = this.$add_new_section_link.data('form')
     this.delete_section_button = '[data-modal-target="#delete-section-modal"]'
+    this.csrf_token = $('[name="csrf-token"]')[0].content
   }
 
   setup() {
@@ -19,7 +20,7 @@ class AdminSectionsPage {
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify({
-          authenticity_token: $('[name="csrf-token"]')[0].content,
+          authenticity_token: this.csrf_token,
           ordered_sections: this.$sections.sortable("toArray")
         })
       }).done((response) => {
@@ -77,6 +78,7 @@ class AdminSectionsPage {
       const action = event.currentTarget.dataset.deleteUrl;
       const modal = $(event.currentTarget.dataset.modalTarget)
       modal.find('form').attr('action', action);
+      modal.find('form').find("input[name='authenticity_token']").attr("value", this.csrf_token)
       modal.find("[data-section-title]").text(event.currentTarget.dataset.sectionTitle);
     })
   }
