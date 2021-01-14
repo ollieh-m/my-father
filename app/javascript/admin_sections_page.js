@@ -5,7 +5,7 @@ class AdminSectionsPage {
     this.$sections = $('.list')
     this.add_new_section_form = this.$add_new_section_link.data('form')
     this.delete_section_button = '[data-modal-target="#delete-section-modal"]'
-    this.csrf_token = $('[name="csrf-token"]')[0].content
+    this.csrf_token = $('[name="csrf-token"]')[0]?.content
   }
 
   setup() {
