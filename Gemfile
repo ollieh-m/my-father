@@ -38,7 +38,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'trailblazer', '~> 2.0.3'
 gem 'reform-rails'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 1.3'
 gem 'fog-aws'
 gem 'docx', :git => 'https://github.com/ollieh-m/docx.git', branch: 'support-hyperlinks', ref: 'f2ca01c728205d8b84160b90b59834992789f7da'
 gem 'file_validators'
