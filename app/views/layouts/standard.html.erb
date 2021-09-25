@@ -4,16 +4,28 @@
     <%= render('head') %>
   </head>
 
-  <body>
+  <body data-js-component='menuToggle'>
     <div class='flash-alert'>
       <%= flash[:alert] %>
     </div>
 
-    <aside class='standard'>
+    <aside class='standard' data-menu-toggle-target='menu'>
+      <div class='menu-toggle menu-toggle--left menu-toggle--active' data-menu-toggle-target='hide'>
+        <i class='material-icons menu-toggle__icon' data-menu-toggle-target='hideButton'>
+          menu_open
+        </i>
+      </div>
+
       <%= render('navigation') %>
     </aside>
 
-    <main class='standard'>
+    <main class='standard' data-menu-toggle-target='content'>
+      <div class='menu-toggle menu-toggle--right menu-toggle--inactive' data-menu-toggle-target='show'>
+        <i class="material-icons menu-toggle__icon" data-menu-toggle-target='showButton'>
+          menu_open
+        </i>
+      </div>
+
       <%= yield %>
     </main>
 

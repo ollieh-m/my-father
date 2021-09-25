@@ -1,0 +1,37 @@
+.menu-toggle {
+  display: flex;
+
+  &__icon {
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+  }
+
+  &--left {
+    flex-direction: row-reverse;
+    padding-bottom: $padding;
+  }
+
+  &--right {
+    padding-top: 20px;
+    padding-left: 30px;
+    margin-bottom: -10px;
+
+    .menu-toggle__icon {
+      color: $background-secondary;
+      transform: rotate(180deg);
+    }
+  }
+
+  &--active {
+    transition-duration: 0.05s;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &--inactive {
+    transition-duration: 0.05s;
+    opacity: 0;
+    visibility: hidden;
+  }
+}

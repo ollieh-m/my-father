@@ -21,3 +21,4 @@ import 'admin_edit_section_page';
 import 'animated_nav';
 import 'modals';
 import 'flash';
+import 'menu_toggle';
