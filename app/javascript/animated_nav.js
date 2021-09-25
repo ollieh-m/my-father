@@ -1,17 +1,18 @@
 import { cascade } from './jquery_plugins'
 
 class AnimatedNav {
-  constructor() {
+  constructor(element) {
+    this.$element = $(element);
   	this.animationSpeed = 20;
-    this.sectionHeader = '.menu__section-header'
-    this.linksWithHeader = '.menu__link__with-header'
-    this.links = '.menu__link a'
+    this.sectionHeaderSelector = "[data-animated-nav-target='sectionHeader']"
+    this.linksWithHeaderSelector = "[data-animated-nav-target='linkWithHeader']"
+    this.linksSelector = "[data-animated-nav-target='link']"
   }
 
   setup() {
-  	const activeNavSection = $(`${this.linksWithHeader}.active`).parent().parent().parent()
+  	const activeNavSection = $(`${this.linksWithHeaderSelector}.active`).parent().parent().parent()
   	if (!activeNavSection.hasClass('open')) {
-  		cascade(activeNavSection.find(this.linksWithHeader), 'down', this.animationSpeed, ()=>{
+  		cascade(activeNavSection.find(this.linksWithHeaderSelector), 'down', this.animationSpeed, ()=>{
   			activeNavSection.addClass('open')
   		})
   	}
@@ -19,7 +20,7 @@ class AnimatedNav {
 
   listen() {
   	const closeOpenSection = (section) => {
-      const links = section.find(this.linksWithHeader)
+      const links = section.find(this.linksWithHeaderSelector)
       cascade(links, 'up', this.animationSpeed, ()=>{
         section.removeClass('open')
       })
@@ -27,16 +28,16 @@ class AnimatedNav {
   	}
 
   	const openClosedSection = (section) => {
-      const links = section.find(this.linksWithHeader)
+      const links = section.find(this.linksWithHeaderSelector)
       cascade(links, 'down', this.animationSpeed, ()=>{
         section.addClass('open')
       })
-  		if (section.find(`${this.linksWithHeader}.active`).length > 0) {
-				section.find(`${this.linksWithHeader}.active`).parent().siblings('.arrow').addClass('active')
+  		if (section.find(`${this.linksWithHeaderSelector}.active`).length > 0) {
+				section.find(`${this.linksWithHeaderSelector}.active`).parent().siblings('.arrow').addClass('active')
       }
     }
     
-    $('body').on('click', this.sectionHeader, (event) => {
+    this.$element.on('click', this.sectionHeaderSelector, (event) => {
       const section = $(event.currentTarget).parents('.menu__section')
       
       if (section.hasClass('open')) {
@@ -47,7 +48,7 @@ class AnimatedNav {
       }
     })
 
-    $('body').on('click', this.links, (event) => {
+    this.$element.on('click', this.linksSelector, (event) => {
       event.preventDefault()
 
       const currentLink = $(event.currentTarget)
@@ -70,7 +71,6 @@ class AnimatedNav {
         document.dispatchEvent(new CustomEvent('animated-nav:load', { detail: {url: window.location.href }}))
       });
     })
-
   }
 }
 
@@ -84,12 +84,9 @@ $(window).on('popstate', ()=>{
 })
 
 $(document).on('turbolinks:load', () => {
-  if ($('.js-class-standard-show-section-page').length > 0) {
-    const nav = new AnimatedNav()
+  $("[data-js-component='animatedNav']").each((index, element) => {
+    const nav = new AnimatedNav(element)
     nav.setup()
     nav.listen()
-  }
+  })
 })
-
-
-

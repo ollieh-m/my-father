@@ -1,11 +1,13 @@
-<ul class='menu'>
+<ul class='menu' data-js-component="animatedNav">
   <% @parts.each do |part| %>
   	<div class="menu__section">
-	    <li class='menu__section-header' data-id='<%= part.id %>'><%= part.title %></li>
+	    <li class='menu__section-header' data-id='<%= part.id %>' data-animated-nav-target='sectionHeader'>
+        <%= part.title %>
+      </li>
 	    <% part.sections_by_position.each do |section| %>
 	    	<div class="menu__link">
-	    		<%= link_to part_section_path(part_id: part, id: section) do %>
-		    		<li class="menu__link__with-header <%= 'active' if current_section == section %>" data-parent-id='<%= part.id %>'>
+	    		<%= link_to part_section_path(part_id: part, id: section), data: { animated_nav_target: 'link' } do %>
+		    		<li class="menu__link__with-header <%= 'active' if current_section == section %>" data-parent-id='<%= part.id %>' data-animated-nav-target='linkWithHeader'>
 		    			<%= section.title %>	
 		    		</li>
 		    	<% end %>
@@ -16,8 +18,8 @@
   <% end %>
 
   <div class="menu__link menu__section">
-  	<%= link_to about_path do %>
-  		<li class="menu__section-header">About</li>
+  	<%= link_to about_path, data: { animated_nav_target: 'link' } do %>
+  		<li class="menu__section-header" data-animated-nav-target='sectionHeader'>About</li>
   	<% end %>
   	<div class="arrow arrow-left <%= 'active' if controller_name == 'abouts' %> standard"></div>
   </div>
