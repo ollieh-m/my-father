@@ -23,19 +23,25 @@ class MenuToggle {
     this.$element.on("click", this.hideButtonSelector, () => {
       makeInactive($(this.hideSelector))
 
-      $(this.menuSelector).animate({"margin-left": "-300"}, 500)
-      $(this.contentSelector).animate({"padding-left": 0}, 500, () => {
-        makeActive($(this.showSelector))
-      })
+      $(this.menuSelector).addClass("off-screen-left")
+      $(this.contentSelector).addClass("full-screen")
+
+      $(this.menuSelector).removeClass("on-screen-left")
+      $(this.contentSelector).removeClass("padded-left")
+
+      makeActive($(this.showSelector))
     })
 
     this.$element.on("click", this.showButtonSelector, () => {
       makeInactive($(this.showSelector))
 
-      $(this.menuSelector).animate({"margin-left": 0}, 500)
-      $(this.contentSelector).animate({"padding-left": "300"}, 500, () => {
-        makeActive($(this.hideSelector))
-      })
+      $(this.menuSelector).addClass("on-screen-left")
+      $(this.contentSelector).addClass("padded-left")
+
+      $(this.menuSelector).removeClass("off-screen-left")
+      $(this.contentSelector).removeClass("full-screen")
+
+      makeActive($(this.hideSelector))
     })
   }
 }

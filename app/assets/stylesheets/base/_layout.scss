@@ -22,19 +22,42 @@ aside {
   &.standard {
     left: 0;
   }
+
+  &.off-screen-left {
+    transition-duration: 0.5s;
+    margin-left: -($sidebar-width);
+  }
+  &.on-screen-left {
+    transition-duration: 0.5s;
+    margin-left: 0;
+  }
 }
 
 main {
   height: 100%;
+
   &.admin {
     padding-right: $sidebar-width;
   }
   &.standard {
     padding-left: $sidebar-width;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &.full-screen {
+    transition-duration: 0.5s;
+    padding-left: 0;
+    padding-right: 0
+  }
+  &.padded-left {
+    transition-duration: 0.5s;
+    padding-left: $sidebar-width;
   }
 }
 
 .page {
+  flex-grow: 1;
   padding: $padding;
   padding-bottom: 79px;
 }

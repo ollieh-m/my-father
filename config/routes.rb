@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
   root :to => "standard/abouts#show"
 
   namespace :admin do
@@ -18,8 +16,8 @@ Rails.application.routes.draw do
       resources :sections, only: [:show, :index]
     end
     resource :about, only: [:show]
+    resource :landing, only: [:show]
   end
 
   resources :sessions, only: [:new, :create, :destroy]
-
 end

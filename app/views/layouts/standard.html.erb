@@ -9,8 +9,8 @@
       <%= flash[:alert] %>
     </div>
 
-    <aside class='standard' data-menu-toggle-target='menu'>
-      <div class='menu-toggle menu-toggle--left menu-toggle--active' data-menu-toggle-target='hide'>
+    <aside class="standard <%= content_for(:aside_class) %>" data-menu-toggle-target='menu'>
+      <div class="menu-toggle menu-toggle--left <%= content_for(:menu_toggle_hide_class) || 'menu-toggle--active' %>" data-menu-toggle-target='hide'>
         <i class='material-icons menu-toggle__icon' data-menu-toggle-target='hideButton'>
           menu_open
         </i>
@@ -19,8 +19,8 @@
       <%= render('navigation') %>
     </aside>
 
-    <main class='standard' data-menu-toggle-target='content'>
-      <div class='menu-toggle menu-toggle--right menu-toggle--inactive' data-menu-toggle-target='show'>
+    <main class="standard <%= content_for(:main_class) %>" data-menu-toggle-target='content'>
+      <div class="menu-toggle menu-toggle--right <%= content_for(:menu_toggle_show_class) || 'menu-toggle--inactive' %>" data-menu-toggle-target='show'>
         <i class="material-icons menu-toggle__icon" data-menu-toggle-target='showButton'>
           menu_open
         </i>
