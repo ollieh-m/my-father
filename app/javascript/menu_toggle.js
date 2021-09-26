@@ -43,7 +43,6 @@ class MenuToggle {
 $(document).on('turbolinks:load', () => {
   $("[data-js-component='menuToggle']").each((index, element) => {
     const toggle = new MenuToggle(element)
-    toggle.setup()
     toggle.listen()
   })
 })
