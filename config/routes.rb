@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :standard do
-    resources :parts, only: [] do
+    resources :parts, only: [:show] do
       resources :sections, only: [:show, :index]
     end
     resource :about, only: [:show]

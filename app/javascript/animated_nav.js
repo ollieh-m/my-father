@@ -4,14 +4,16 @@ class AnimatedNav {
   constructor(element) {
     this.$element = $(element);
   	this.animationSpeed = 20;
-    this.sectionHeaderSelector = "[data-animated-nav-target='sectionHeader']"
-    this.linksWithHeaderSelector = "[data-animated-nav-target='linkWithHeader']"
-    this.linksSelector = "[data-animated-nav-target='link']"
+    this.sectionSelector = "[data-animated-nav-target~='section']"
+    this.sectionHeaderSelector = "[data-animated-nav-target~='sectionHeader']"
+    this.linksWithHeaderSelector = "[data-animated-nav-target~='linkWithHeader']"
+    this.linksSelector = "[data-animated-nav-target~='link']"
   }
 
   setup() {
-  	const activeNavSection = $(`${this.linksWithHeaderSelector}.active`).parent().parent().parent()
-  	if (!activeNavSection.hasClass('open')) {
+  	const activeNavSection = $(`${this.linksSelector}.active`).parents(this.sectionSelector)
+  	
+    if (!activeNavSection.hasClass('open')) {
   		cascade(activeNavSection.find(this.linksWithHeaderSelector), 'down', this.animationSpeed, ()=>{
   			activeNavSection.addClass('open')
   		})
@@ -38,17 +40,15 @@ class AnimatedNav {
     }
     
     this.$element.on('click', this.sectionHeaderSelector, (event) => {
-      const section = $(event.currentTarget).parents('.menu__section')
+      const section = $(event.currentTarget).parents(this.sectionSelector)
       
-      if (section.hasClass('open')) {
-        closeOpenSection(section)
-      } else {
-        closeOpenSection($('.menu__section.open').first())
+      if (!section.hasClass('open')) {
+        closeOpenSection($(`${this.sectionSelector}.open`).first())
         openClosedSection(section)
       }
     })
 
-    this.$element.on('click', this.linksSelector, (event) => {
+    this.$element.on('click', `${this.linksSelector}:not(${this.sectionHeaderSelector})`, (event) => {
       event.preventDefault()
 
       const currentLink = $(event.currentTarget)

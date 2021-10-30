@@ -9,6 +9,8 @@ module Standard
 	  end
 
 	  def show
+	  	@current_page = Section.find_by(id: params[:id])
+
 	    result = Section::Show.(params)
 
 	    if result.success?
@@ -19,6 +21,5 @@ module Standard
 	      render result['failure'].go_to, locals: {text: result['failure'].detail}
 	    end
 	  end
-
 	end
 end

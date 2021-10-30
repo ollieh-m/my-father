@@ -8,6 +8,9 @@ module Standard
 
     private
 
+    attr_reader :current_page
+    helper_method :current_page
+
     def authenticate!
     	unless standard_access?
     		redirect_to new_session_path(redirect_to: request.fullpath)
@@ -17,12 +20,5 @@ module Standard
     def nav_setup
       @parts = Part.all.includes(:sections_by_position)
     end
-
-    def current_section
-      return @current_section if defined?(@current_section) 
-      @current_section = Section.find_by(id: params[:id])
-    end
-    helper_method :current_section
-
   end
 end
