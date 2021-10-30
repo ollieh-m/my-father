@@ -3,74 +3,89 @@ import { cascade } from './jquery_plugins'
 class AnimatedNav {
   constructor(element) {
     this.$element = $(element);
-  	this.animationSpeed = 20;
+  	this.animationSpeed = 10;
     this.sectionSelector = "[data-animated-nav-target~='section']"
+    this.itemSelector = "[data-animated-nav-target~='item']"
     this.sectionHeaderSelector = "[data-animated-nav-target~='sectionHeader']"
     this.linksWithHeaderSelector = "[data-animated-nav-target~='linkWithHeader']"
     this.linksSelector = "[data-animated-nav-target~='link']"
   }
 
+  loadPage(event) {
+    event.preventDefault()
+
+    const currentLink = $(event.currentTarget).closest('a')
+    const href = currentLink.attr('href')
+
+    $.ajax({
+      method: "GET",
+      url: href
+    }).done((response) => {
+      history.pushState({forceLoad: true}, null, href);
+
+      $('.active').removeClass('active')
+      currentLink.parents(this.itemSelector).addClass('active')
+
+      const newPage = $(response).find('.page').html()
+      $('.page').html(newPage)
+
+      // trigger custom event that we listen to in the page head to trigger a google analytics page load
+      document.dispatchEvent(new CustomEvent('animated-nav:load', { detail: {url: window.location.href }}))
+    });
+  }
+
+  closeOpenSection(section, callback) {
+    $('.active').removeClass('active')
+
+    const links = section.find(this.linksWithHeaderSelector)
+    cascade(links, 'up', this.animationSpeed, ()=>{
+      section.removeClass('open')
+      
+      if (callback) {
+        callback()
+      }
+    })
+  }
+
+  openClosedSection(section, callback) {
+    const links = section.find(this.linksWithHeaderSelector)
+    cascade(links, 'down', this.animationSpeed, ()=>{
+      section.addClass('open')
+
+      if (callback) {
+        callback()
+      }
+    })
+  }
+
   setup() {
-  	const activeNavSection = $(`${this.linksSelector}.active`).parents(this.sectionSelector)
+  	const activeNavSection = $('.active').parents(this.sectionSelector)
   	
     if (!activeNavSection.hasClass('open')) {
-  		cascade(activeNavSection.find(this.linksWithHeaderSelector), 'down', this.animationSpeed, ()=>{
-  			activeNavSection.addClass('open')
-  		})
+      this.openClosedSection(activeNavSection)
   	}
   }
 
-  listen() {
-  	const closeOpenSection = (section) => {
-      const links = section.find(this.linksWithHeaderSelector)
-      cascade(links, 'up', this.animationSpeed, ()=>{
-        section.removeClass('open')
-      })
-  		$('.arrow.active').removeClass('active')
-  	}
-
-  	const openClosedSection = (section) => {
-      const links = section.find(this.linksWithHeaderSelector)
-      cascade(links, 'down', this.animationSpeed, ()=>{
-        section.addClass('open')
-      })
-  		if (section.find(`${this.linksWithHeaderSelector}.active`).length > 0) {
-				section.find(`${this.linksWithHeaderSelector}.active`).parent().siblings('.arrow').addClass('active')
-      }
-    }
-    
+  listen() {    
     this.$element.on('click', this.sectionHeaderSelector, (event) => {
+      event.preventDefault()
+
       const section = $(event.currentTarget).parents(this.sectionSelector)
       
       if (!section.hasClass('open')) {
-        closeOpenSection($(`${this.sectionSelector}.open`).first())
-        openClosedSection(section)
+        this.closeOpenSection($(`${this.sectionSelector}.open`).first(), () => {
+          this.openClosedSection(section, () => {
+            this.loadPage(event)
+          })
+        })
+      } else {
+        this.loadPage(event)
       }
     })
 
     this.$element.on('click', `${this.linksSelector}:not(${this.sectionHeaderSelector})`, (event) => {
-      event.preventDefault()
-
-      const currentLink = $(event.currentTarget)
-      const href = currentLink.attr('href')
-
-      $.ajax({
-        method: "GET",
-        url: href
-      }).done((response) => {
-        history.pushState({forceLoad: true}, null, href);
-
-        $('.active').removeClass('active')
-        currentLink.children('li').addClass('active')
-        currentLink.siblings('.arrow').addClass('active')
-
-        const newPage = $(response).find('.page').html()
-        $('.page').html(newPage)
-
-        // trigger custom event that we listen to in the page head to trigger a google analytics page load
-        document.dispatchEvent(new CustomEvent('animated-nav:load', { detail: {url: window.location.href }}))
-      });
-    })
+      this.loadPage(event)
+    }) 
   }
 }
 
