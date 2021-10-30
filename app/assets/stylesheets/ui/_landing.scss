@@ -6,4 +6,10 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+
+  &__title {
+    font-weight: 400;
+    font-size: $large-font-size;
+    margin: $padding 0;
+  }
 }

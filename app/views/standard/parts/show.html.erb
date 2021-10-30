@@ -1,7 +1,8 @@
 <div class='page'>
   <div class='landing'>
     <div class='landing__content'>
-      <%= part.title %>
+      <h1 class="landing__title"><%= part.title %></h1>
+      <%= render part.title.parameterize %>
     </div>
   </div>
 </div>
