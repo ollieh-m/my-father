@@ -1,17 +1,14 @@
 module Standard
 	class SectionsController < BaseController
-
 	  def index
-	    part = Part.find_by(id: params[:part_id])
-	    if part && first_section = part.sections_by_position.first
-	      redirect_to part_section_path(part_id: part, id: first_section)
-	    end
+	    part = Part.find(params[:part_id])
+	    
+	    redirect_to part_path(part)
 	  end
 
 	  def show
-	  	@current_page = Section.find_by(id: params[:id])
-
 	    result = Section::Show.(params)
+	    @current_page = result['section']
 
 	    if result.success?
 	      render locals: {
