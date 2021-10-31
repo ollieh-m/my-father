@@ -1,6 +1,5 @@
 module Admin
   class SectionsController < BaseController
-
     before_action :nav_setup
 
     def index
@@ -70,14 +69,13 @@ module Admin
 
     private
 
-    def nav_setup
-      @parts = Part.all
-    end
+      def nav_setup
+        @parts = Part.all
+      end
 
-    def current_part
-      @current_part ||= Part.find_by(id: params[:part_id])
-    end
-    helper_method :current_part
-
+      def current_part
+        @current_part ||= Part.find_by(id: params[:part_id])
+      end
+      helper_method :current_part
   end
 end

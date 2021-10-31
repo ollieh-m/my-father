@@ -18,7 +18,7 @@ RSpec.describe 'Signing in' do
   		visit new_session_path
   		fill_in 'Password', with: 'standard_password'
   		click_on 'Enter'
-  		expect(current_path).to eq part_section_path(part_id: part, id: section_2)
+  		expect(current_path).to eq part_path(part)
 	 	end
 
 	 	scenario 'Via a different page' do
@@ -32,7 +32,7 @@ RSpec.describe 'Signing in' do
 	 		visit root_path
 	 		fill_in 'Password', with: 'standard_password'
 	 		click_on 'Enter'
-  		active_arrow = find('.menu__section', text: 'About').find_all('.arrow.active')
+  		active_arrow = find('.active.menu__item', text: 'About').find_all('.arrow')
   		expect(active_arrow.length).to eq 1
 	 	end
 

@@ -1,5 +1,4 @@
 module StandardFailure
-
   def handle_standard_failure(failure, **options)
     if failure.type == :now
       flash.now[:alert] = failure.message
@@ -9,5 +8,4 @@ module StandardFailure
       redirect_to failure.go_to
     end
   end
-
 end

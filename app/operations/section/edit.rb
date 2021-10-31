@@ -1,5 +1,4 @@
 class Section::Edit < Trailblazer::Operation
-
   def self.url_helpers
     Rails.application.routes.url_helpers
   end
@@ -26,5 +25,4 @@ class Section::Edit < Trailblazer::Operation
   def prepopulate(options, params:, **)
     options['contract.default'].prepopulate!
   end
-
 end

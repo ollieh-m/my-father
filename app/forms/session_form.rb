@@ -1,5 +1,4 @@
 class SessionForm
-
 	include ActiveModel::Model
 
 	attr_accessor :password, :redirect_to
@@ -20,5 +19,4 @@ class SessionForm
 			errors[:password] << 'Sorry, that password is wrong'
 		end
 	end
-
 end

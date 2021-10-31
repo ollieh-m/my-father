@@ -1,5 +1,4 @@
 class Section::Update < Trailblazer::Operation
-
   def self.url_helpers
     Rails.application.routes.url_helpers
   end
@@ -37,5 +36,4 @@ class Section::Update < Trailblazer::Operation
   def prepopulate(options, params:, **)
     options['contract.default'].prepopulate! if options['contract.default']
   end
-
 end

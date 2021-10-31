@@ -1,6 +1,6 @@
 // only hide 'closed' nav sections with JS enabled
 .js .menu__section:not(.open) {
-  .menu__link__with-header {
+  .menu__item-with-header {
     display: none;
   }
 }
@@ -10,29 +10,36 @@
   margin: 0;
   padding: 0;
 
-  li {
-  	margin-bottom: 2px;
-    padding: $padding;
-  }
-
   a {
   	text-decoration: none;
   }
 
-  .menu__section {
+  &__section {
   	margin-bottom: $padding;
-
-  	.menu__section-header {
-      font-size: 1.1rem;
-      font-weight: 700;
-  		background-color: $background-primary;
-      color: $background-dark;
-      cursor: pointer;
-  	}
   }
 
-  .menu__link {
+  &__section-header {
+    margin-bottom: 2px;
+    padding: $padding;
+    font-size: 1.1rem;
+    font-weight: 700;
+    background-color: $background-primary;
+    color: $background-dark;
+    cursor: pointer;
+  }
+
+  &__item {
   	position: relative;
+
+    &.active {
+      .arrow {
+        display: inline-block;
+      }
+      .menu__item-with-header {
+        background-color: $background-primary;
+        color: $background-secondary;
+      }
+    }
 
   	.arrow {
   		display: none;
@@ -46,23 +53,19 @@
         right: -1 * $padding * 2;
         top: calc(50% - 15px);
   		}
-
-  		&.active {
-  			display: inline-block;
-  		}
   	}
+  }
 
-    &__with-header {
-      padding-top: $padding * 0.5;
-      padding-bottom: $padding * 0.5;
-      border: 1px solid $background-primary;
-      background-color: $background-secondary;
-      color: $background-primary;
+  &__item-with-header {
+    margin-bottom: 2px;
+    padding: $padding;
+    border: 1px solid $background-primary;
+    background-color: $background-secondary;
+    color: $background-primary;
 
-      &.active, &:hover {
-        background-color: $background-primary;
-        color: $background-secondary;
-      }
+    &:hover {
+      background-color: $background-primary;
+      color: $background-secondary;
     }
   }
 }

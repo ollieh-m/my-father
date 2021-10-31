@@ -11,7 +11,7 @@ RSpec.describe Section::Show do
       let(:result){ described_class.({part_id: part.id + 1, id: section.id}) }
 
       it 'Fails' do
-        expect_failure_to_find_version(result: result)
+        expect_failure_to_find_section(result: result)
       end
     end
 
@@ -19,7 +19,7 @@ RSpec.describe Section::Show do
       let(:result){ described_class.({part_id: part.id, id: section.id + 1}) }
 
       it 'Fails' do
-        expect_failure_to_find_version(result: result)
+        expect_failure_to_find_section(result: result)
       end
     end
 
@@ -84,13 +84,22 @@ RSpec.describe Section::Show do
       )
     end
   end
-end
 
-def expect_failure_to_find_version(result:)
-  expect(result).not_to be_success
-  expect(result).to be_failure
-  expect(result['failure'].message).to eq "Could not find a version"
-  expect(result['failure'].step).to eq 'version'
-  expect(result['failure'].go_to).to eq :show
-  expect(result['failure'].type).to eq :now
+  def expect_failure_to_find_section(result:)
+    expect(result).not_to be_success
+    expect(result).to be_failure
+    expect(result['failure'].message).to eq "Could not find the section"
+    expect(result['failure'].step).to eq 'section'
+    expect(result['failure'].go_to).to eq :show
+    expect(result['failure'].type).to eq :now
+  end
+
+  def expect_failure_to_find_version(result:)
+    expect(result).not_to be_success
+    expect(result).to be_failure
+    expect(result['failure'].message).to eq "Could not find a version"
+    expect(result['failure'].step).to eq 'version'
+    expect(result['failure'].go_to).to eq :show
+    expect(result['failure'].type).to eq :now
+  end
 end

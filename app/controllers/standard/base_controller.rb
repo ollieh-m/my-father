@@ -1,6 +1,5 @@
 module Standard
   class BaseController < ApplicationController
-
     layout 'standard'
 
     before_action :authenticate!
@@ -8,21 +7,17 @@ module Standard
 
     private
 
-    def authenticate!
-    	unless standard_access?
-    		redirect_to new_session_path(redirect_to: request.fullpath)
-    	end
-    end
+      attr_reader :current_page
+      helper_method :current_page
 
-    def nav_setup
-      @parts = Part.all.includes(:sections_by_position)
-    end
+      def authenticate!
+        unless standard_access?
+          redirect_to new_session_path(redirect_to: request.fullpath)
+        end
+      end
 
-    def current_section
-      return @current_section if defined?(@current_section) 
-      @current_section = Section.find_by(id: params[:id])
-    end
-    helper_method :current_section
-
+      def nav_setup
+        @parts = Part.all.includes(:sections_by_position)
+      end
   end
 end

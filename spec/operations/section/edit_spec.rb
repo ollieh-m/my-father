@@ -43,12 +43,12 @@ RSpec.describe Section::Edit do
       expect(model).not_to be_persisted
     end
   end
-end
 
-def expect_failure_to_find_section(result:, section_id:, part_id:)
-  expect(result).not_to be_success
-  expect(result).to be_failure
-  expect(result['failure'].message).to eq "Could not find section with ID #{section_id}"
-  expect(result['failure'].step).to eq 'model'
-  expect(result['failure'].go_to).to eq admin_part_sections_path(part_id: part_id)
+  def expect_failure_to_find_section(result:, section_id:, part_id:)
+    expect(result).not_to be_success
+    expect(result).to be_failure
+    expect(result['failure'].message).to eq "Could not find section with ID #{section_id}"
+    expect(result['failure'].step).to eq 'model'
+    expect(result['failure'].go_to).to eq admin_part_sections_path(part_id: part_id)
+  end
 end

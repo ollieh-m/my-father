@@ -1,5 +1,4 @@
 class CreateSectionForm < Reform::Form
-
   validates :title, presence: true
 
   property :title
@@ -13,5 +12,4 @@ class CreateSectionForm < Reform::Form
   		save
   	end
   end
-
 end

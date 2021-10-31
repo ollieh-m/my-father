@@ -1,26 +1,44 @@
-<ul class='menu' data-js-component='animatedNav'>
+<div class='menu' data-js-component='animatedNav'>
   <% @parts.each do |part| %>
-  	<div class="menu__section">
-	    <li class='menu__section-header' data-id='<%= part.id %>' data-animated-nav-target='sectionHeader'>
-        <%= part.title %>
-      </li>
+  	<div class="menu__section" data-animated-nav-target="section">
+      <div class="menu__item <%= 'active' if current_page == part %>" data-animated-nav-target="item">
+        <%= link_to part_path(part) do %>
+    	    <li 
+            class="menu__section-header" 
+            data-animated-nav-target="sectionHeader">
+            <%= part.title %>
+          </li>
+        <% end %>
+
+        <div class="arrow arrow-left standard"></div>
+      </div>
+
 	    <% part.sections_by_position.each do |section| %>
-	    	<div class="menu__link">
-	    		<%= link_to part_section_path(part_id: part, id: section), data: { animated_nav_target: 'link' } do %>
-		    		<li class="menu__link__with-header <%= 'active' if current_section == section %>" data-parent-id='<%= part.id %>' data-animated-nav-target='linkWithHeader'>
+	    	<div class="menu__item <%= 'active' if current_page == section %>" data-animated-nav-target="item">
+	    		<%= link_to part_section_path(part_id: part, id: section) do %>
+		    		<li 
+              class="menu__item-with-header" 
+              data-animated-nav-target="itemWithHeader">
 		    			<%= section.title %>	
 		    		</li>
 		    	<% end %>
-	    		<div class="arrow arrow-left <%= 'active' if current_section == section %> standard"></div>
+
+	    		<div class="arrow arrow-left standard"></div>
 	    	</div>
 	    <% end %>
 	  </div>
   <% end %>
 
-  <div class="menu__link menu__section">
-  	<%= link_to about_path, data: { animated_nav_target: 'link' } do %>
-  		<li class="menu__section-header" data-animated-nav-target='sectionHeader'>About</li>
+  <div 
+    class="menu__section menu__item <%= 'active' if current_page == :about %>" 
+    data-animated-nav-target="section item">
+  	<%= link_to about_path do %>
+  		<li 
+        class="menu__section-header" 
+        data-animated-nav-target="sectionHeader">
+        About
+      </li>
   	<% end %>
-  	<div class="arrow arrow-left <%= 'active' if controller_name == 'abouts' %> standard"></div>
+  	<div class="arrow arrow-left standard"></div>
   </div>
-</ul>
+</div>

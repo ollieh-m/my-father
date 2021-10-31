@@ -1,5 +1,4 @@
 class Session::Create < Trailblazer::Operation
-
 	include Rails.application.routes.url_helpers
 
   step :contract
@@ -37,8 +36,7 @@ class Session::Create < Trailblazer::Operation
   	elsif options['contract.validated_as'] == 'admin'
   		admin_part_sections_path(part_id: Part.first)
   	else
-  		part_sections_path(part_id: Part.first)
+  		part_path(Part.first)
   	end
   end
-
 end

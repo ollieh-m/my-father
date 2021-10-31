@@ -1,4 +1,14 @@
 class Section::Show < Trailblazer::Operation
+  step :section
+  failure Macros::Failure::Set() { |options, params|
+    {
+      message: "Could not find the section",
+      type: :now,
+      go_to: :show,
+      step: 'section'
+    }
+  }
+
   step :version
   failure Macros::Failure::Set() { |options, params|
     {
@@ -20,12 +30,14 @@ class Section::Show < Trailblazer::Operation
     }
   }
 
-  def version(options, params:, **)
+  def section(options, params:, **)
     if part = Part.find_by(id: params[:part_id])
-      if section = Section.find_by(id: params[:id], part: part)
-        options['version'] = section.versions.last
-      end
-    end
+      options['section'] = Section.find_by(id: params[:id], part: part)
+    end 
+  end
+
+  def version(options, params:, **)
+    options['version'] = options['section'].versions.last
   end
 
   def read(options, params:, **)

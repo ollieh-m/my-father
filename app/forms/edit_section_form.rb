@@ -1,5 +1,4 @@
 class EditSectionForm < Reform::Form
-
   validates :title, presence: true
 
   property :title
@@ -11,5 +10,4 @@ class EditSectionForm < Reform::Form
   		self.versions << Version.new
   	end
   end
-
 end
