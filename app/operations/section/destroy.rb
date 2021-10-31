@@ -1,5 +1,4 @@
 class Section::Destroy < Trailblazer::Operation
-
   def self.url_helpers
     Rails.application.routes.url_helpers
   end
@@ -29,5 +28,4 @@ class Section::Destroy < Trailblazer::Operation
   def destroy(options, params:, **)
     options['section'].destroy
   end
-
 end

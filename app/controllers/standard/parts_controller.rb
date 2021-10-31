@@ -1,6 +1,5 @@
 module Standard
   class PartsController < BaseController
-
     def show
       @current_page = part
 

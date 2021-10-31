@@ -1,5 +1,4 @@
 class Section::Create < Trailblazer::Operation
-
   step :part
   failure Macros::Failure::Set() { |options, params|
     {
@@ -26,5 +25,4 @@ class Section::Create < Trailblazer::Operation
   def model(options, params:, **)
     options['model'] = Section.new(part: options['part'])
   end
-
 end

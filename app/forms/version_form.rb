@@ -1,5 +1,4 @@
 class VersionForm < Reform::Form
-
   validate :document_attached, unless: -> {delete == '1'}
   validates :document, file_content_type: {
     allow: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
@@ -57,5 +56,4 @@ class VersionForm < Reform::Form
       super
     end
   end
-
 end

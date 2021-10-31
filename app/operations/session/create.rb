@@ -1,5 +1,4 @@
 class Session::Create < Trailblazer::Operation
-
 	include Rails.application.routes.url_helpers
 
   step :contract
@@ -40,5 +39,4 @@ class Session::Create < Trailblazer::Operation
   		part_path(Part.first)
   	end
   end
-
 end

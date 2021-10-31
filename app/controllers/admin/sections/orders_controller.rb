@@ -1,7 +1,6 @@
 module Admin
 	module Sections
 		class OrdersController < BaseController
-
 	    def update
 	    	result = SectionOrder::Update.(params)
 
@@ -15,7 +14,6 @@ module Admin
 	    		}, status: 400
 	    	end
 	    end
-
 	  end
   end
 end

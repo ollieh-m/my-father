@@ -1,5 +1,4 @@
 class Section::Index < Trailblazer::Operation
-
   def self.url_helpers
     Rails.application.routes.url_helpers
   end
@@ -30,5 +29,4 @@ class Section::Index < Trailblazer::Operation
   def sections(options, params:, **)
     options['sections'] = options['part'].sections_by_position
   end
-
 end

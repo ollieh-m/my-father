@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
 	def new
     render locals: {
       form: Session::New.(params)['contract.default']
@@ -18,8 +17,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def session_params
-    params.require(:session_form).permit(:password, :redirect_to)
-  end
-
+    def session_params
+      params.require(:session_form).permit(:password, :redirect_to)
+    end
 end

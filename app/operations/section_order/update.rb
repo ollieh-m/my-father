@@ -1,5 +1,4 @@
 class SectionOrder::Update < Trailblazer::Operation
-
   step :part
   failure Macros::Failure::Set() { |options, params|
     {
@@ -51,5 +50,4 @@ class SectionOrder::Update < Trailblazer::Operation
 	  	end
 	  end
   end
-
 end

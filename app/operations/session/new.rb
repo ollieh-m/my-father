@@ -1,5 +1,4 @@
 class Session::New < Trailblazer::Operation
-
   step :contract
 
   step :set_redirect_to
@@ -11,5 +10,4 @@ class Session::New < Trailblazer::Operation
   def set_redirect_to(options, params:, **)
   	options['contract.default'].redirect_to = params[:redirect_to]
   end
-
 end

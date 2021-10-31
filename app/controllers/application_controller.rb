@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  
   protect_from_forgery with: :exception
 
   include StandardFailure
@@ -22,5 +21,4 @@ class ApplicationController < ActionController::Base
   	current_user == 'standard' || admin_access?
   end
   helper_method :standard_access?
-
 end
