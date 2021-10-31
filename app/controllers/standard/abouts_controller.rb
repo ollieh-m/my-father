@@ -1,7 +1,7 @@
 module Standard
-	class AboutsController < BaseController
-		def show
+  class AboutsController < BaseController
+    def show
       @current_page = :about
-		end
-	end
+    end
+  end
 end

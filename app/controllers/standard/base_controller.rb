@@ -11,9 +11,9 @@ module Standard
       helper_method :current_page
 
       def authenticate!
-      	unless standard_access?
-      		redirect_to new_session_path(redirect_to: request.fullpath)
-      	end
+        unless standard_access?
+          redirect_to new_session_path(redirect_to: request.fullpath)
+        end
       end
 
       def nav_setup

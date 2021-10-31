@@ -8,17 +8,17 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-  	@current_user ||= session[:current_user]
+    @current_user ||= session[:current_user]
   end
   helper_method :current_user
 
   def admin_access?
-  	current_user == 'admin'
+    current_user == 'admin'
   end
   helper_method :admin_access?
 
   def standard_access?
-  	current_user == 'standard' || admin_access?
+    current_user == 'standard' || admin_access?
   end
   helper_method :standard_access?
 end
