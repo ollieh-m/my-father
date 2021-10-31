@@ -5,7 +5,7 @@
         <%= link_to part_path(part) do %>
     	    <li 
             class="menu__section-header" 
-            data-animated-nav-target="sectionHeader link">
+            data-animated-nav-target="sectionHeader">
             <%= part.title %>
           </li>
         <% end %>
@@ -17,7 +17,8 @@
 	    	<div class="menu__item <%= 'active' if current_page == section %>" data-animated-nav-target="item">
 	    		<%= link_to part_section_path(part_id: part, id: section) do %>
 		    		<li 
-              class="menu__item-with-header" data-animated-nav-target="linkWithHeader link">
+              class="menu__item-with-header" 
+              data-animated-nav-target="itemWithHeader">
 		    			<%= section.title %>	
 		    		</li>
 		    	<% end %>
@@ -32,7 +33,9 @@
     class="menu__section menu__item <%= 'active' if current_page == :about %>" 
     data-animated-nav-target="section item">
   	<%= link_to about_path do %>
-  		<li class="menu__section-header" data-animated-nav-target="sectionHeader link">
+  		<li 
+        class="menu__section-header" 
+        data-animated-nav-target="sectionHeader">
         About
       </li>
   	<% end %>

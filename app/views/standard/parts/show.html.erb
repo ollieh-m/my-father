@@ -2,7 +2,7 @@
   <div class='landing'>
     <div class='landing__content'>
       <h1 class="landing__title"><%= part.title %></h1>
-      <%= render part.title.parameterize %>
+      <%= render_if_exists part.title.parameterize %>
     </div>
   </div>
 </div>

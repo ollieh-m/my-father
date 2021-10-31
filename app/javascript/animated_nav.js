@@ -7,8 +7,7 @@ class AnimatedNav {
     this.sectionSelector = "[data-animated-nav-target~='section']"
     this.itemSelector = "[data-animated-nav-target~='item']"
     this.sectionHeaderSelector = "[data-animated-nav-target~='sectionHeader']"
-    this.linksWithHeaderSelector = "[data-animated-nav-target~='linkWithHeader']"
-    this.linksSelector = "[data-animated-nav-target~='link']"
+    this.itemWithHeaderSelector = "[data-animated-nav-target~='itemWithHeader']"
   }
 
   loadPage(event) {
@@ -37,7 +36,7 @@ class AnimatedNav {
   closeOpenSection(section, callback) {
     $('.active').removeClass('active')
 
-    const links = section.find(this.linksWithHeaderSelector)
+    const links = section.find(this.itemWithHeaderSelector)
     cascade(links, 'up', this.animationSpeed, ()=>{
       section.removeClass('open')
       
@@ -48,7 +47,7 @@ class AnimatedNav {
   }
 
   openClosedSection(section, callback) {
-    const links = section.find(this.linksWithHeaderSelector)
+    const links = section.find(this.itemWithHeaderSelector)
     cascade(links, 'down', this.animationSpeed, ()=>{
       section.addClass('open')
 
@@ -83,7 +82,7 @@ class AnimatedNav {
       }
     })
 
-    this.$element.on('click', `${this.linksSelector}:not(${this.sectionHeaderSelector})`, (event) => {
+    this.$element.on('click', this.itemWithHeaderSelector, (event) => {
       this.loadPage(event)
     }) 
   }
