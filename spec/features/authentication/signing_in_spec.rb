@@ -32,8 +32,7 @@ RSpec.describe 'Signing in' do
 	 		visit root_path
 	 		fill_in 'Password', with: 'standard_password'
 	 		click_on 'Enter'
-  		active_arrow = find('.active.menu__item', text: 'About').find_all('.arrow')
-  		expect(active_arrow.length).to eq 1
+  		expect(current_path).to eq root_path
 	 	end
 
 	 	scenario 'With incorrect password' do
