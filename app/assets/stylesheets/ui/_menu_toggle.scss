@@ -35,3 +35,9 @@
     visibility: hidden;
   }
 }
+
+@media (max-width: 600px) {
+  .menu-toggle--right.menu-toggle--inactive + .page {
+    color: $gray;
+  }
+}

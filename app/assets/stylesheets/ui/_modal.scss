@@ -8,7 +8,8 @@
 	background-color: rgba(0, 0, 0, 0.5);
 	
 	&__panel {
-		min-width: $panel-width;
+		max-width: $panel-width;
+		width: 90%;
 	  position:absolute;
 	  top:50%;
 	  left:50%;
