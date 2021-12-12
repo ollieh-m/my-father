@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => "standard/abouts#show"
+  root :to => "standard/landings#show"
 
   namespace :admin do
     resources :parts, only: [] do
