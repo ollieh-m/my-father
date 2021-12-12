@@ -1,10 +1,10 @@
 <ul class='menu'>
   <% @parts.each do |part| %>
-    <div class="menu__link menu__section">
+    <div class="menu__item menu__section <%= 'active' if current_part == part %>">
     	<%= link_to admin_part_sections_path(part) do %>
     		<li class="menu__section-header"><%= part.title %></li>
     	<% end %>
-    	<div class="arrow arrow-right <%= 'active' if current_part == part %> admin"></div>
+    	<div class="arrow arrow-right admin"></div>
 	  </div>
   <% end %>
 </ul>
