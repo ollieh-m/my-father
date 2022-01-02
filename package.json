@@ -2,16 +2,16 @@
   "name": "my-father",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "5.2.1",
+    "@rails/webpacker": "5.4.3",
     "jquery": "^3.3.1",
     "jquery-ui": "^1.12.1",
     "rails-ujs": "^5.2.1",
     "turbolinks": "^5.2.0"
   },
   "devDependencies": {
-    "webpack-dev-server": "^3.11.1"
+    "webpack-dev-server": "^4.7.2"
   },
   "engines": {
-    "node": "12.16.2"
+    "node": "16.13.1"
   }
 }
