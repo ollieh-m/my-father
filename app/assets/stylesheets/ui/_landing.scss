@@ -4,13 +4,20 @@
   margin-right: auto;
   display: flex;
   align-items: center;
+  align-content: center;
   justify-content: center;
+  flex-wrap: wrap;
   height: 100%;
   padding: $padding * 3;
+  text-align: center;
 
-  &__content {
+  &__title {
     font-weight: 400;
+    font-size: $x-large-font-size;
+  }
+
+  &__subtitle {
     font-size: $large-font-size;
-    text-align: center;
+    margin-top: $padding;
   }
 }

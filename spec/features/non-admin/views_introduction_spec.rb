@@ -6,7 +6,7 @@ RSpec.describe 'User views introduction to a part' do
     mock_standard_access
   end
 
-  let(:part_1){ create(:part, title: "My Father keeps the PM waiting (1970)") }
+  let(:part_1){ create(:part, title: "My Father keeps the PM waiting (1970)", param: "pm_waiting_1970") }
   let(:part_2){ create(:part) }
 
   context 'successfully' do

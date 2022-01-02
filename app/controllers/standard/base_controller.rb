@@ -17,7 +17,7 @@ module Standard
       end
 
       def nav_setup
-        @parts = Part.all.includes(:sections_by_position)
+        @parts = Part.ordered_for_nav.includes(:sections_by_position)
       end
   end
 end
