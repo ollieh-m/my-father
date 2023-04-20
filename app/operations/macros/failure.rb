@@ -4,7 +4,8 @@ module Macros
     def self.Set(&block)
       step = ->(input, options) do
         unless input['failure']
-          input['failure'] = ::Failure.new(block ? block.call(input, options['params']) : {})
+          failure_options = block.call(input, options['params'])
+          input['failure'] = ::Failure.new(**failure_options)
         end
       end
 
