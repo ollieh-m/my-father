@@ -38,10 +38,12 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'trailblazer', '~> 2.0.3'
 gem 'reform-rails'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 gem 'fog-aws'
 gem 'docx', :git => 'https://github.com/ollieh-m/docx.git', branch: 'support-hyperlinks'
-gem 'file_validators'
+# file_validators 3 doesn't work with carrierwave, but older version doesn't work with ruby 3
+# see https://github.com/ollieh-m/file_validators/pull/1 for details
+gem 'file_validators', :git => 'https://github.com/ollieh-m/file_validators.git', branch: 'make-2.3.0-compatible-with-ruby-3'
 gem 'cocaine'
 gem 'newrelic_rpm'
 gem 'barnes'
@@ -56,7 +58,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
