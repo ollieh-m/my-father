@@ -41,9 +41,7 @@ gem 'reform-rails'
 gem 'carrierwave'
 gem 'fog-aws'
 gem 'docx', :git => 'https://github.com/ollieh-m/docx.git', branch: 'support-hyperlinks'
-# file_validators 3 doesn't work with carrierwave, but older version doesn't work with ruby 3
-# see https://github.com/ollieh-m/file_validators/pull/1 for details
-gem 'file_validators', :git => 'https://github.com/ollieh-m/file_validators.git', branch: 'make-2.3.0-compatible-with-ruby-3'
+gem 'file_validators'
 gem 'cocaine'
 gem 'newrelic_rpm'
 gem 'barnes'

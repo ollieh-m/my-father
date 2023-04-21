@@ -7,15 +7,6 @@ GIT
       nokogiri (~> 1.8, >= 1.8.1)
       rubyzip (~> 1.2, >= 1.2.1)
 
-GIT
-  remote: https://github.com/ollieh-m/file_validators.git
-  revision: 28d120f05984d64909b357f033b62ef52feaee92
-  branch: make-2.3.0-compatible-with-ruby-3
-  specs:
-    file_validators (2.3.0)
-      activemodel (>= 3.2)
-      mime-types (>= 1.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -145,6 +136,9 @@ GEM
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
+    file_validators (3.0.0)
+      activemodel (>= 3.2)
+      mime-types (>= 1.0)
     fog-aws (3.18.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
@@ -374,7 +368,7 @@ DEPENDENCIES
   factory_bot
   factory_bot_rails
   faker
-  file_validators!
+  file_validators
   fog-aws
   jbuilder (~> 2.5)
   launchy
