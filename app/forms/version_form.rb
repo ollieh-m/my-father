@@ -2,8 +2,8 @@ class VersionForm < Reform::Form
   validate :document_attached, unless: -> {delete == '1'}
   validates :document, file_content_type: {
     allow: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
-    mode: :strict, 
-    unless: -> {document.blank? || delete == '1'},
+    mode: :strict,
+    if: :new_attachment?,
     message: 'only .docx files are allowed'
   }
 

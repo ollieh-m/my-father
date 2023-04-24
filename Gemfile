@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.5'
+ruby '3.2.1'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,9 +8,9 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 6.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -38,9 +38,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'trailblazer', '~> 2.0.3'
 gem 'reform-rails'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave'
 gem 'fog-aws'
-gem 'docx', :git => 'https://github.com/ollieh-m/docx.git', branch: 'support-hyperlinks', ref: 'f2ca01c728205d8b84160b90b59834992789f7da'
+gem 'docx', :git => 'https://github.com/ollieh-m/docx.git', branch: 'support-hyperlinks'
 gem 'file_validators'
 gem 'cocaine'
 gem 'newrelic_rpm'
@@ -56,7 +56,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
