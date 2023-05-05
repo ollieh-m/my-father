@@ -19,7 +19,7 @@ primary_region = "lhr"
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
-    type = "connections"
+    type = "requests"
 
   [[services.ports]]
     force_https = true
