@@ -13,6 +13,8 @@ primary_region = "lhr"
   internal_port = 3000
   processes = ["web"]
   protocol = "tcp"
+  auto_stop_machines = true
+  auto_start_machines = true
 
   [services.concurrency]
     hard_limit = 25
