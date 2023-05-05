@@ -6,14 +6,31 @@
 app = "my-father"
 primary_region = "lhr"
 
-[http_service]
+[processes]
+  web = "bundle exec puma -C config/puma.rb"
+
+[[services]]
   internal_port = 3000
-  force_https = true
-  auto_stop_machines = true
-  auto_start_machines = true
+  processes = ["web"]
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+    type = "connections"
+
+  [[services.ports]]
+    force_https = true
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
 
 [checks]
   [checks.alive]
+    port = 3000
     type = "tcp"
     interval = "15s"
     timeout = "2s"
