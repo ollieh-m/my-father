@@ -33,3 +33,5 @@ public/development
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+latest.dump

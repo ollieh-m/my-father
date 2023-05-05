@@ -121,6 +121,8 @@ GEM
     disposable (0.6.3)
       declarative (>= 0.0.9, < 1.0.0)
       representable (>= 3.1.1, < 4)
+    dockerfile-rails (1.2.5)
+      rails
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
@@ -366,6 +368,7 @@ DEPENDENCIES
   cocaine
   coffee-rails (~> 4.2)
   database_cleaner
+  dockerfile-rails
   docx!
   dotenv-rails
   factory_bot
