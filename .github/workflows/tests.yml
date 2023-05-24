@@ -46,4 +46,8 @@ jobs:
         run: |
           bin/rails db:prepare
       - name: Run tests
+        env:
+          RAILS_ENV: test
+          DATABASE_USERNAME: my-father
+          DATABASE_PASSWORD: pg_password
         run: bundle exec rspec
