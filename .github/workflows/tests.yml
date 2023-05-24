@@ -36,7 +36,6 @@ jobs:
       - name: Setup test database
         env:
           RAILS_ENV: test
-          PGHOST: localhost
           DATABASE_USERNAME: my-father
           DATABASE_PASSWORD: ""
         run: |
