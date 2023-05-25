@@ -72,7 +72,7 @@ group :test do
   gem 'faker'
   gem 'timecop'
   gem 'capybara', require: false
-  gem 'poltergeist', require: false
+  gem 'selenium-webdriver', require: false
   gem 'launchy'
 end
 
