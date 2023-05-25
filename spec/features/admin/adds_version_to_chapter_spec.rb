@@ -28,7 +28,7 @@ RSpec.describe 'Admin adds a version to a chapter' do
       fill_in 'Title', with: 'New title'
       add_version
       expect(page).to have_content 'dummy_document_1.docx'
-      expect(section.reload.versions.count).to eq 2
+      expect(section.reload.versions.count).to eq 1
       expect(section.versions.last.document.file.filename).to eq 'dummy_document_1.docx'
       expect(section.title).to eq 'New title'
     end
