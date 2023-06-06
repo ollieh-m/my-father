@@ -10,13 +10,13 @@ module DatabaseConnectionRetry
 
     private
 
-      def with_retries(attempts_remaining:, wait_time:, &attempt)
+      def with_retries(attempts_remaining:, wait_time:, &)
         attempts_remaining -= 1
         yield
       rescue
         if attempts_remaining > 0
           sleep(wait_time)
-          with_retries(attempts_remaining:, wait_time:, &attempt)
+          with_retries(attempts_remaining:, wait_time:, &)
         else
           raise
         end
