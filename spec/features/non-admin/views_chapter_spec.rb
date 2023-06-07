@@ -1,11 +1,6 @@
 require "feature_helper"
 
 RSpec.describe "User views latest version of a chapter" do
-
-  before do
-    mock_standard_access
-  end
-
   let!(:part) { create(:part) }
   let!(:section) { create(:section, part:) }
 

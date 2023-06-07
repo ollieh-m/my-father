@@ -37,7 +37,7 @@ class Section::Show < Trailblazer::Operation
   end
 
   def version(options, params:, **)
-    options["version"] = options["section"].versions.last
+    options["version"] = options["section"].versions.oldest_first.last
   end
 
   def read(options, params:, **)

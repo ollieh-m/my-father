@@ -71,6 +71,19 @@ RSpec.describe Section::Show do
     end
   end
 
+  context "With a section with multiple versions", type: :document_upload do
+    before do
+      create(:version, section:, document_name: "dummy_document_2.docx", created_at: 1.day.ago)
+      create(:version, section:, document_name: "dummy_document_1.docx", created_at: 2.days.ago)
+    end
+
+    let!(:result) { described_class.({ part_id: part.id, id: section.id }) }
+
+    it "Uses the most recent version" do
+      expect(result["version"].document.file.filename).to eq "dummy_document_2.docx"
+    end
+  end
+
   context "With a section including a hyperlink", type: :document_upload do
     before do
       create(:version, section:, document_name: "dummy_document_with_link.docx")
