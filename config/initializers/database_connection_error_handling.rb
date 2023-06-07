@@ -17,7 +17,6 @@ module DatabaseConnectionRetry
         if attempts_remaining > 0
           sleep(wait_time)
           with_retries(attempts_remaining:, wait_time:, &block)
-          foo = { foo: "bar" }
         else
           raise
         end
