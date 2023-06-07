@@ -15,6 +15,9 @@ RSpec.describe "Admin removes a version from a section" do
     visit admin_part_sections_path(part)
     click_on "Edit"
     versions = all(".existing-version", count: 2)
+    within versions[0] do
+      expect(page).to have_content "dummy_document_1.docx"
+    end
     remove_version(versions[0])
     expect(page).not_to have_content "dummy_document_1.docx"
     expect(section.reload.versions.count).to eq 1
