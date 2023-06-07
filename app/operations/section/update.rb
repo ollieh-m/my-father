@@ -8,17 +8,17 @@ class Section::Update < Trailblazer::Operation
     {
       message: "Could not find section with ID #{params[:id]}",
       go_to: url_helpers.admin_part_sections_path(part_id: params[:part_id]),
-      step: 'model'
+      step: "model"
     }
   }
 
   step Contract::Build( constant: EditSectionForm )
 
-  step Contract::Validate( key: 'edit_section' )
+  step Contract::Validate( key: "edit_section" )
   failure Macros::Failure::Set() { |options, params|
     {
       type: :now,
-      step: 'contract.default.validate',
+      step: "contract.default.validate",
       go_to: :edit
     }
   }
@@ -29,11 +29,11 @@ class Section::Update < Trailblazer::Operation
 
   def model(options, params:, **)
     if part = Part.find_by(id: params[:part_id])
-      options['model'] = Section.find_by(id: params[:id], part: part)
+      options["model"] = Section.find_by(id: params[:id], part:)
     end
   end
 
   def prepopulate(options, params:, **)
-    options['contract.default'].prepopulate! if options['contract.default']
+    options["contract.default"].prepopulate! if options["contract.default"]
   end
 end

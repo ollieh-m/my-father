@@ -1,6 +1,6 @@
 module Standard
   class BaseController < ApplicationController
-    layout 'standard'
+    layout "standard"
 
     before_action :authenticate!
     before_action :nav_setup

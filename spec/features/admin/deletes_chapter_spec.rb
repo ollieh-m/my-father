@@ -1,17 +1,17 @@
-require 'feature_helper'
+require "feature_helper"
 
-RSpec.describe 'Admin deletes a chapter' do
+RSpec.describe "Admin deletes a chapter" do
 
   before do
     mock_admin_access
   end
 
-  let!(:part){ create(:part) }
-  let!(:section){ create(:section, part: part, title: "Chapter to delete") }
-  let!(:section_2){ create(:section, part: part, title: "Chapter not to delete") }
+  let!(:part) { create(:part) }
+  let!(:section) { create(:section, part:, title: "Chapter to delete") }
+  let!(:section_2) { create(:section, part:, title: "Chapter not to delete") }
 
-  context 'Successfully' do
-    scenario 'and the correct chapter is removed from the list', js: true do
+  context "Successfully" do
+    scenario "and the correct chapter is removed from the list", js: true do
       visit admin_part_sections_path(part)
       delete_chapter
 
@@ -20,8 +20,8 @@ RSpec.describe 'Admin deletes a chapter' do
     end
 
     scenario "and it's versions are also deleted", js: true do
-      create(:version, section: section)
-      
+      create(:version, section:)
+
       visit admin_part_sections_path(part)
       delete_chapter
 

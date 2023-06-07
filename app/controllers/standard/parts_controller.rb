@@ -4,7 +4,7 @@ module Standard
       @current_page = part
 
       render locals: {
-        part: part
+        part:
       }
     end
 

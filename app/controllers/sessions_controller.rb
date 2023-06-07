@@ -1,17 +1,17 @@
 class SessionsController < ApplicationController
   def new
     render locals: {
-      form: Session::New.(params)['contract.default']
+      form: Session::New.(params)["contract.default"]
     }
   end
 
   def create
-    result = Session::Create.(session_params, session: session)
+    result = Session::Create.(session_params, session:)
 
     if result.success?
-      redirect_to result['redirect_to']
+      redirect_to result["redirect_to"]
     else
-      handle_standard_failure(result['failure'], locals: {form: result['contract.default']})
+      handle_standard_failure(result["failure"], locals: { form: result["contract.default"] })
     end
   end
 

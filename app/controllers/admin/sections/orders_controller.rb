@@ -6,12 +6,12 @@ module Admin
 
         if result.success?
           render json: {
-            status: 'success'
-          }, status: 200
+            status: "success"
+          }, status: :ok
         else
           render json: {
-            error: result['failure'].message
-          }, status: 400
+            error: result["failure"].message
+          }, status: :bad_request
         end
       end
     end

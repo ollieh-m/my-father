@@ -7,11 +7,11 @@ module Admin
 
       if result.success?
         render locals: {
-          form: result['contract.default'],
-          sections: result['sections']
+          form: result["contract.default"],
+          sections: result["sections"]
         }
       else
-        handle_standard_failure(result['failure'])
+        handle_standard_failure(result["failure"])
       end
     end
 
@@ -20,15 +20,15 @@ module Admin
 
       if result.success?
         render json: {
-          section: render_to_string(template: 'admin/sections/_section', layout: false, locals: {
-            section: result['model']
+          section: render_to_string(template: "admin/sections/_section", layout: false, locals: {
+            section: result["model"]
           })
         }
       else
         render json: {
-          section: render_to_string(template: 'admin/sections/_section_form', layout: false, locals: {
-            form: result['contract.default'],
-            error: result['failure'].message
+          section: render_to_string(template: "admin/sections/_section_form", layout: false, locals: {
+            form: result["contract.default"],
+            error: result["failure"].message
           })
         }
       end
@@ -39,10 +39,10 @@ module Admin
 
       if result.success?
         render locals: {
-          form: result['contract.default']
+          form: result["contract.default"]
         }
       else
-        handle_standard_failure(result['failure'])
+        handle_standard_failure(result["failure"])
       end
     end
 
@@ -52,7 +52,7 @@ module Admin
       if result.success?
         redirect_to edit_admin_part_section_path
       else
-        handle_standard_failure(result['failure'], locals: {form: result['contract.default']})
+        handle_standard_failure(result["failure"], locals: { form: result["contract.default"] })
       end
     end
 
@@ -63,7 +63,7 @@ module Admin
         flash[:notice] = "Successfully deleted #{result['section'].title}"
         redirect_to admin_part_sections_path
       else
-        handle_standard_failure(result['failure'])
+        handle_standard_failure(result["failure"])
       end
     end
 

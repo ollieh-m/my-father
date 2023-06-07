@@ -6,8 +6,8 @@ class EditSectionForm < Reform::Form
   collection :versions, form: VersionForm, populate_if_empty: Version, prepopulator: :ensure_empty_version
 
   def ensure_empty_version(**options)
-  	unless self.versions.any?{ |version| !version.id }
-  		self.versions << Version.new
-  	end
+    unless self.versions.any? { |version| !version.id }
+      self.versions << Version.new
+    end
   end
 end
