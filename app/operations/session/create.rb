@@ -33,10 +33,10 @@ class Session::Create < Trailblazer::Operation
   def set_redirect(options, params:, **)
     options["redirect_to"] = if params[:redirect_to].present?
                                params[:redirect_to]
-    elsif options["contract.validated_as"] == "admin"
-      admin_part_sections_path(part_id: Part.first)
-    else
-      part_path(Part.first)
-    end
+                             elsif options["contract.validated_as"] == "admin"
+                               admin_part_sections_path(part_id: Part.first)
+                             else
+                               part_path(Part.first)
+                             end
   end
 end
