@@ -8,7 +8,7 @@ class Section::Destroy < Trailblazer::Operation
     {
       message: "Could not find section with ID #{params[:id]}",
       go_to: url_helpers.admin_part_sections_path(part_id: params[:part_id]),
-      step: 'model'
+      step: "model"
     }
   }
 
@@ -17,15 +17,15 @@ class Section::Destroy < Trailblazer::Operation
     {
       message: "Something went wrong. Please try again",
       go_to: url_helpers.admin_part_sections_path(part_id: params[:part_id]),
-      step: 'destroy'
+      step: "destroy"
     }
   }
 
   def section(options, params:, **)
-    options['section'] = Section.find_by(id: params[:id])
+    options["section"] = Section.find_by(id: params[:id])
   end
 
   def destroy(options, params:, **)
-    options['section'].destroy
+    options["section"].destroy
   end
 end

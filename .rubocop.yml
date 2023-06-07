@@ -1,0 +1,30 @@
+inherit_from:
+  - https://raw.githubusercontent.com/cookpad/styleguide/master/.rubocop.yml
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+Layout/SpaceAfterComma:
+  Enabled: true
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: no_empty_lines
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: no_comma
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Lint/AssignmentInCondition:
+  Enabled: false
+
+require:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
+Rails/SkipsModelValidations:
+  AllowedMethods:
+    - update_column

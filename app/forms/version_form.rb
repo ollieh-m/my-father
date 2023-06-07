@@ -1,10 +1,10 @@
 class VersionForm < Reform::Form
-  validate :document_attached, unless: -> {delete == '1'}
+  validate :document_attached, unless: -> { delete == "1" }
   validates :document, file_content_type: {
-    allow: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+    allow: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     mode: :strict,
     if: :new_attachment?,
-    message: 'only .docx files are allowed'
+    message: "only .docx files are allowed"
   }
 
   property :id, writeable: false
@@ -17,9 +17,9 @@ class VersionForm < Reform::Form
   # if there is a new attachment
   def validate!(errors, prefix)
     return_value = super
-    if new_attachment? 
+    if new_attachment?
       if self.errors[:document].empty?
-        self.document_cache = Version.new(document: document).document_cache
+        self.document_cache = Version.new(document:).document_cache
       else
         self.document_cache = nil
       end
@@ -32,11 +32,11 @@ class VersionForm < Reform::Form
   end
 
   def document_cache_name
-    document_cache.split('/').last if document_cache
+    document_cache.split("/").last if document_cache
   end
 
   def new_attachment?
-    document.class.to_s.include?('UploadedFile')
+    document.class.to_s.include?("UploadedFile")
   end
 
   def existing_attachment?
@@ -45,7 +45,7 @@ class VersionForm < Reform::Form
 
   def document_attached
     unless document_cache.present? || new_attachment? || existing_attachment?
-      errors[:base] << 'a new version must have an attachment'
+      errors[:base] << "a new version must have an attachment"
     end
   end
 

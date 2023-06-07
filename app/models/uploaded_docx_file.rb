@@ -9,7 +9,7 @@ class UploadedDocxFile
 
   def to_html
     html = Docx::Document.open(local_file).to_html
-    html = html.gsub('\n', '')
+    html = html.gsub('\n', "")
     sanitize(html, attributes: %w(href target))
   ensure
     close_file
@@ -17,9 +17,9 @@ class UploadedDocxFile
 
   private
 
-    def local_file 
+    def local_file
       @_local_file ||= if upload.file.class.to_s == "CarrierWave::Storage::Fog::File"
-        URI.parse(upload.url).open
+                         URI.parse(upload.url).open
       else
         upload.file.file
       end

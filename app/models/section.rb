@@ -5,6 +5,6 @@ class Section < ApplicationRecord
   scope :by_position, -> { order(:position) }
 
   def self.new_position
-  	(maximum('position') || 0) + 1
+    (maximum("position") || 0) + 1
   end
 end

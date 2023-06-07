@@ -5,7 +5,7 @@ class Section::Show < Trailblazer::Operation
       message: "Could not find the section",
       type: :now,
       go_to: :show,
-      step: 'section'
+      step: "section"
     }
   }
 
@@ -15,7 +15,7 @@ class Section::Show < Trailblazer::Operation
       message: "Could not find a version",
       type: :now,
       go_to: :show,
-      step: 'version'
+      step: "version"
     }
   }
 
@@ -23,30 +23,30 @@ class Section::Show < Trailblazer::Operation
   failure Macros::Failure::Set() { |options, params|
     {
       message: "Could not read version",
-      detail: options['text.failure'],
+      detail: options["text.failure"],
       type: :now,
       go_to: :show,
-      step: 'read'
+      step: "read"
     }
   }
 
   def section(options, params:, **)
     if part = Part.find_by(id: params[:part_id])
-      options['section'] = Section.find_by(id: params[:id], part: part)
-    end 
+      options["section"] = Section.find_by(id: params[:id], part:)
+    end
   end
 
   def version(options, params:, **)
-    options['version'] = options['section'].versions.last
+    options["version"] = options["section"].versions.last
   end
 
   def read(options, params:, **)
     begin
-      options['text'] = Rails.cache.fetch(options['version'].cache_key) do
-        UploadedDocxFile.new(options['version'].document).to_html
+      options["text"] = Rails.cache.fetch(options["version"].cache_key) do
+        UploadedDocxFile.new(options["version"].document).to_html
       end
     rescue => e
-      options['text.failure'] = e.message
+      options["text.failure"] = e.message
       false
     end
   end

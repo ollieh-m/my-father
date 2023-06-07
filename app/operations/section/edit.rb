@@ -8,7 +8,7 @@ class Section::Edit < Trailblazer::Operation
     {
       message: "Could not find section with ID #{params[:id]}",
       go_to: url_helpers.admin_part_sections_path(part_id: params[:part_id]),
-      step: 'model'
+      step: "model"
     }
   }
 
@@ -18,11 +18,11 @@ class Section::Edit < Trailblazer::Operation
 
   def model(options, params:, **)
     if part = Part.find_by(id: params[:part_id])
-      options['model'] = Section.find_by(id: params[:id], part: part)
+      options["model"] = Section.find_by(id: params[:id], part:)
     end
   end
 
   def prepopulate(options, params:, **)
-    options['contract.default'].prepopulate!
+    options["contract.default"].prepopulate!
   end
 end

@@ -24,7 +24,7 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -57,7 +57,7 @@ Rails.application.configure do
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
 
-  redis_url = ENV.fetch('REDIS_URL') { 'redis://localhost:6379/0' }
+  redis_url = ENV.fetch("REDIS_URL") { "redis://localhost:6379/0" }
   config.cache_store = :redis_cache_store, { url: redis_url }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
